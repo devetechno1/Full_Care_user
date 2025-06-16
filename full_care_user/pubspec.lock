@@ -61,58 +61,58 @@ packages:
     dependency: "direct main"
     description:
       name: audioplayers
-      sha256: a5341380a4f1d3a10a4edde5bb75de5127fe31e0faa8c4d860e64d2f91ad84c7
+      sha256: e653f162ddfcec1da2040ba2d8553fff1662b5c2a5c636f4c21a3b11bee497de
       url: "https://pub.dev"
     source: hosted
-    version: "6.4.0"
+    version: "6.5.0"
   audioplayers_android:
     dependency: transitive
     description:
       name: audioplayers_android
-      sha256: f8c90823a45b475d2c129f85bbda9c029c8d4450b172f62e066564c6e170f69a
+      sha256: "60a6728277228413a85755bd3ffd6fab98f6555608923813ce383b190a360605"
       url: "https://pub.dev"
     source: hosted
-    version: "5.2.0"
+    version: "5.2.1"
   audioplayers_darwin:
     dependency: transitive
     description:
       name: audioplayers_darwin
-      sha256: "405cdbd53ebdb4623f1c5af69f275dad4f930ce895512d5261c07cd95d23e778"
+      sha256: "0811d6924904ca13f9ef90d19081e4a87f7297ddc19fc3d31f60af1aaafee333"
       url: "https://pub.dev"
     source: hosted
-    version: "6.2.0"
+    version: "6.3.0"
   audioplayers_linux:
     dependency: transitive
     description:
       name: audioplayers_linux
-      sha256: "7e0d081a6a527c53aef9539691258a08ff69a7dc15ef6335fbea1b4b03ebbef0"
+      sha256: f75bce1ce864170ef5e6a2c6a61cd3339e1a17ce11e99a25bae4474ea491d001
       url: "https://pub.dev"
     source: hosted
-    version: "4.2.0"
+    version: "4.2.1"
   audioplayers_platform_interface:
     dependency: transitive
     description:
       name: audioplayers_platform_interface
-      sha256: "77e5fa20fb4a64709158391c75c1cca69a481d35dc879b519e350a05ff520373"
+      sha256: "0e2f6a919ab56d0fec272e801abc07b26ae7f31980f912f24af4748763e5a656"
       url: "https://pub.dev"
     source: hosted
-    version: "7.1.0"
+    version: "7.1.1"
   audioplayers_web:
     dependency: transitive
     description:
       name: audioplayers_web
-      sha256: bd99d8821114747682a2be0adcdb70233d4697af989b549d3a20a0f49f6c9b13
+      sha256: "1c0f17cec68455556775f1e50ca85c40c05c714a99c5eb1d2d57cc17ba5522d7"
       url: "https://pub.dev"
     source: hosted
-    version: "5.1.0"
+    version: "5.1.1"
   audioplayers_windows:
     dependency: transitive
     description:
       name: audioplayers_windows
-      sha256: "871d3831c25cd2408ddc552600fd4b32fba675943e319a41284704ee038ad563"
+      sha256: "4048797865105b26d47628e6abb49231ea5de84884160229251f37dfcbe52fd7"
       url: "https://pub.dev"
     source: hosted
-    version: "4.2.0"
+    version: "4.2.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -397,18 +397,18 @@ packages:
     dependency: "direct main"
     description:
       name: drift
-      sha256: b584ddeb2b74436735dd2cf746d2d021e19a9a6770f409212fd5cbc2814ada85
+      sha256: e60c715f045dd33624fc533efb0075e057debec9f39e83843e518f488a0e21fb
       url: "https://pub.dev"
     source: hosted
-    version: "2.26.1"
+    version: "2.27.0"
   drift_dev:
     dependency: "direct dev"
     description:
       name: drift_dev
-      sha256: "54dc207c6e4662741f60e5752678df183957ab907754ffab0372a7082f6d2816"
+      sha256: "7ad88b8982e753eadcdbc0ea7c7d30500598af733601428b5c9d264baf5106d6"
       url: "https://pub.dev"
     source: hosted
-    version: "2.26.1"
+    version: "2.27.0"
   drift_flutter:
     dependency: "direct main"
     description:
@@ -996,10 +996,10 @@ packages:
     dependency: transitive
     description:
       name: google_maps_flutter_ios
-      sha256: c7433645c4c9b61c587938cb06072f3dad601239e596b090c0f8f206c1f2ade7
+      sha256: "5b4ba52d2002ba86bfa0073bda69a863c8a7ca148703ff8bc1259641282acc1a"
       url: "https://pub.dev"
     source: hosted
-    version: "2.15.2"
+    version: "2.15.3"
   google_maps_flutter_platform_interface:
     dependency: transitive
     description:
@@ -2097,10 +2097,10 @@ packages:
     dependency: transitive
     description:
       name: watcher
-      sha256: "69da27e49efa56a15f8afe8f4438c4ec02eff0a117df1b22ea4aad194fe1c104"
+      sha256: "0b7fd4a0bbc4b92641dbf20adfd7e3fd1398fe17102d94b674234563e110088a"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.1"
+    version: "1.1.2"
   web:
     dependency: "direct overridden"
     description:
@@ -2150,7 +2150,7 @@ packages:
     source: hosted
     version: "2.13.1"
   webview_flutter_wkwebview:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: webview_flutter_wkwebview
       sha256: a3d461fe3467014e05f3ac4962e5fdde2a4bf44c561cb53e9ae5c586600fdbc3

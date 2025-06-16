@@ -45,45 +45,45 @@
     },
     {
       "name": "audioplayers",
-      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/audioplayers-6.4.0",
+      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/audioplayers-6.5.0",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.6"
     },
     {
       "name": "audioplayers_android",
-      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/audioplayers_android-5.2.0",
+      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/audioplayers_android-5.2.1",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.6"
     },
     {
       "name": "audioplayers_darwin",
-      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/audioplayers_darwin-6.2.0",
+      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/audioplayers_darwin-6.3.0",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.6"
     },
     {
       "name": "audioplayers_linux",
-      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/audioplayers_linux-4.2.0",
+      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/audioplayers_linux-4.2.1",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.6"
     },
     {
       "name": "audioplayers_platform_interface",
-      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/audioplayers_platform_interface-7.1.0",
+      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/audioplayers_platform_interface-7.1.1",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.6"
     },
     {
       "name": "audioplayers_web",
-      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/audioplayers_web-5.1.0",
+      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/audioplayers_web-5.1.1",
       "packageUri": "lib/",
-      "languageVersion": "3.3"
+      "languageVersion": "3.6"
     },
     {
       "name": "audioplayers_windows",
-      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/audioplayers_windows-4.2.0",
+      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/audioplayers_windows-4.2.1",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.6"
     },
     {
       "name": "boolean_selector",
@@ -297,13 +297,13 @@
     },
     {
       "name": "drift",
-      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/drift-2.26.1",
+      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/drift-2.27.0",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
     {
       "name": "drift_dev",
-      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/drift_dev-2.26.1",
+      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/drift_dev-2.27.0",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -753,9 +753,9 @@
     },
     {
       "name": "google_maps_flutter_ios",
-      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/google_maps_flutter_ios-2.15.2",
+      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/google_maps_flutter_ios-2.15.3",
       "packageUri": "lib/",
-      "languageVersion": "3.4"
+      "languageVersion": "3.6"
     },
     {
       "name": "google_maps_flutter_platform_interface",
@@ -1581,7 +1581,7 @@
     },
     {
       "name": "watcher",
-      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/watcher-1.1.1",
+      "rootUri": "file:///Users/devetechno/.pub-cache/hosted/pub.dev/watcher-1.1.2",
       "packageUri": "lib/",
       "languageVersion": "3.1"
     },
@@ -1676,7 +1676,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2025-06-12T13:39:54.757953Z",
+  "generated": "2025-06-16T12:01:47.193485Z",
   "generator": "pub",
   "generatorVersion": "3.6.1",
   "flutterRoot": "file:///Users/devetechno/flutter",
