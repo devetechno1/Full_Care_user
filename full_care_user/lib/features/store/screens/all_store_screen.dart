@@ -53,7 +53,7 @@ class _AllStoreScreenState extends State<AllStoreScreen> {
           appBar: CustomAppBar(
             title: widget.isFeatured ? 'featured_stores'.tr :  widget.isPopular
               ? Get.find<SplashController>().configModel!.moduleConfig!.module!.showRestaurantText!
-              ? widget.isNearbyStore ? 'best_store_nearby'.tr : 'popular_restaurants'.tr : widget.isNearbyStore ? 'best_store_nearby'.tr : 'popular_stores'.tr
+              ? widget.isNearbyStore ? 'best_store_nearby'.tr : 'popular_Nurse_Office'.tr : widget.isNearbyStore ? 'best_store_nearby'.tr : 'popular_stores'.tr
                 : widget.isTopOfferStore ? 'top_offers_near_me'.tr : '${'new_on'.tr} ${AppConstants.appName}',
             type: widget.isFeatured ? null : storeController.type,
             onVegFilterTap: (String type) {
@@ -150,7 +150,7 @@ class _AllStoreScreenState extends State<AllStoreScreen> {
 
                       ]),
                     ) : WebScreenTitleWidget(title: widget.isFeatured ? 'featured_stores'.tr :
-                     widget.isPopular ? Get.find<SplashController>().configModel!.moduleConfig!.module!.showRestaurantText! ? 'popular_restaurants'.tr :
+                     widget.isPopular ? Get.find<SplashController>().configModel!.moduleConfig!.module!.showRestaurantText! ? 'popular_Nurse_Office'.tr :
                      'popular_stores'.tr : widget.isTopOfferStore ? 'top_offers_near_me'.tr : '${'new_on'.tr} ${AppConstants.appName}',
                     ),
 
