@@ -513,18 +513,24 @@ class LocationController extends GetxController implements GetxService {
     }
 
   }
+}
 
-  Future<bool> checkInternet() async {
-    if(kIsWeb) {
-      return true;
-    }
-    final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
-    bool isConnected = connectivityResult.contains(ConnectivityResult.ethernet) ||connectivityResult.contains(ConnectivityResult.wifi) || connectivityResult.contains(ConnectivityResult.mobile);
-    if(!isConnected) {
-      Get.offAll(()=> const NoInternetScreen());
-      return false;
-    }
+bool _hasErrorInternet = false;
+
+Future<bool> checkInternet() async {
+  if(kIsWeb) {
     return true;
   }
-
+  final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
+  bool isDisConnected = connectivityResult.contains(ConnectivityResult.none);
+  if(isDisConnected) {
+    if(!_hasErrorInternet){
+      _hasErrorInternet = true;
+      return checkInternet();
+    }
+    Get.offAll(()=> const NoInternetScreen());
+    return false;
+  }
+  _hasErrorInternet = false;
+  return true;
 }

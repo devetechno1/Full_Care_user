@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
 import 'package:get/get_connect.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sixam_mart/api/api_client.dart';
@@ -10,6 +11,8 @@ import 'package:sixam_mart/features/checkout/domain/models/place_order_body_mode
 import 'package:sixam_mart/helper/auth_helper.dart';
 import 'package:sixam_mart/helper/module_helper.dart';
 import 'package:sixam_mart/util/app_constants.dart';
+
+import '../../../language/controllers/language_controller.dart';
 
 class CartRepository implements CartRepositoryInterface<OnlineCart> {
   final ApiClient apiClient;
@@ -87,7 +90,7 @@ class CartRepository implements CartRepositoryInterface<OnlineCart> {
     List<OnlineCartModel>? onlineCartList;
     Map<String, String>? header ={
       'Content-Type': 'application/json; charset=UTF-8',
-      AppConstants.localizationKey: AppConstants.languages[0].languageCode!,
+      AppConstants.localizationKey: Get.find<LocalizationController>().locale.languageCode,
       AppConstants.moduleId: '${ModuleHelper.getCacheModule()?.id}',
       'Authorization': 'Bearer ${sharedPreferences.getString(AppConstants.token)}'
     };
