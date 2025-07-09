@@ -345,7 +345,7 @@ class _DeliveryManRegistrationScreenState extends State<DeliveryManRegistrationS
                             prefixIcon: Icons.lock,
                             isPassword: true,
                             required: true,
-                            validator: (value) => ValidateCheck.validateEmptyText(value, null),
+                            validator: (value) => ValidateCheck.validatePassword(value, null),
                           )
                         ]),
                       ),

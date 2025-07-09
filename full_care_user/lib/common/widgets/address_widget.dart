@@ -54,7 +54,7 @@ class AddressWidget extends StatelessWidget {
                         style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeDefault),
                       ),
                     ]),
-                    const SizedBox(height: Dimensions.paddingSizeExtraSmall),
+                   // const SizedBox(height: Dimensions.paddingSizeExtraSmall),
 
                     Text(
                       address!.address!,

@@ -4,7 +4,7 @@ import 'package:sixam_mart/features/language/domain/models/language_model.dart';
 import 'package:sixam_mart/util/images.dart';
 
 class AppConstants {
-  static const String appName = 'Full Care U';
+  static const String appName = 'FULL CARE';
   static const double appVersion = 3.1;
   // static const double appVersion = 3.1;
 

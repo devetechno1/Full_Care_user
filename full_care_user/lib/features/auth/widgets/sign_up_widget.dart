@@ -198,7 +198,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                           inputType: TextInputType.visiblePassword,
                           prefixIcon: Icons.lock,
                           isPassword: true,
-                          validator: (value) => ValidateCheck.validateEmptyText(value, "please_enter_password".tr),
+                          validator: (value) => ValidateCheck.validatePassword(value, "please_enter_password".tr),
                         ),
                       ]),
                     ),
@@ -217,7 +217,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
                       prefixIcon: Icons.lock,
                       isPassword: true,
                       onSubmit: (text) => (GetPlatform.isWeb) ? _register(authController, _countryDialCode!) : null,
-                      validator: (value) => ValidateCheck.validateConfirmPassword(value, _passwordController.text),
+                      validator: (value) => ValidateCheck.validateEmptyText(value, _passwordController.text),
                     )) : const SizedBox()
 
                   ]),
