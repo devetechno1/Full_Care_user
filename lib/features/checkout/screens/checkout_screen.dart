@@ -37,6 +37,9 @@ import 'package:sixam_mart/features/checkout/widgets/bottom_section.dart';
 import 'package:sixam_mart/features/checkout/widgets/top_section.dart';
 import 'package:flutter/material.dart';
 
+import '../../location/controllers/location_controller.dart';
+import '../widgets/delivery_section.dart';
+
 class CheckoutScreen extends StatefulWidget {
   final List<CartModel?>? cartList;
   final bool fromCart;
@@ -176,9 +179,31 @@ class CheckoutScreenState extends State<CheckoutScreen> {
       appBar: CustomAppBar(title: 'checkout'.tr),
       endDrawer: const MenuDrawer(),endDrawerEnableOpenDragGesture: false,
       body: guestCheckoutPermission || AuthHelper.isLoggedIn() ? GetBuilder<CheckoutController>(builder: (checkoutController) {
+        final List<AddressModel> _address = List.unmodifiable(_getAddressList(addressList: Get.find<AddressController>().addressList, store: checkoutController.store));
+        address.clear();
+        address.addAll(_address);
 
-        List<DropdownItem<int>> addressList = _getDropdownAddressList(context: context, addressList: Get.find<AddressController>().addressList, store: checkoutController.store);
-        address = _getAddressList(addressList: Get.find<AddressController>().addressList, store: checkoutController.store);
+        address.removeWhere(
+          (e) => e.streetNumber?.trim().isNotEmpty != true && e.floor?.trim().isNotEmpty != true && e.house?.trim().isNotEmpty != true,
+        );
+
+        if(address.isEmpty){
+          address.add(_address.first);
+        }
+        if((checkoutController.addressIndex ?? address.length) >= address.length){
+          checkoutController.setAddressIndex(0,false);
+        }
+        WidgetsBinding.instance.addPostFrameCallback(
+          (timeStamp) {
+            Get.find<LocationController>().prepareZoneInCheckout(address[checkoutController.addressIndex!]).then(
+              (add) {
+                if(add != null) address[checkoutController.addressIndex!] = add;
+              },
+            );
+          },
+        );
+
+        List<DropdownItem<int>> addressList = _getDropdownAddressList(context: context, addressList: address, store: checkoutController.store);
 
         bool todayClosed = false;
         bool tomorrowClosed = false;
@@ -247,8 +272,20 @@ class CheckoutScreenState extends State<CheckoutScreen> {
 
           total = total - referralDiscount;
 
-          if(widget.storeId != null){
-            checkoutController.setPaymentMethod(0, isUpdate: false);
+          int? paymentMethod;
+          if(checkoutController.paymentMethodIndex != -1){
+            paymentMethod = checkoutController.paymentMethodIndex;
+          }else if(_isCashOnDeliveryActive ?? false){
+            paymentMethod = 0;
+          }else if(_isWalletActive){
+            paymentMethod = 1;
+          }else if(_isDigitalPaymentActive ?? false){
+            paymentMethod = 2;
+          }else if(_isOfflinePaymentActive){
+            paymentMethod = 3;
+          }
+          if(widget.storeId != null || paymentMethod != null){
+            checkoutController.setPaymentMethod(paymentMethod ?? 0, isUpdate: false);
           }
           checkoutController.setTotalAmount(total - (checkoutController.isPartialPay ? Get.find<ProfileController>().userInfoModel!.walletBalance! : 0));
 
@@ -385,7 +422,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
         child: CustomButton(
           isLoading: checkoutController.isLoading,
           buttonText: 'place_order'.tr,
-          onPressed: checkoutController.acceptTerms ? () {
+          onPressed: checkoutController.acceptTerms ? () async{
           bool isAvailable = true;
           DateTime scheduleStartDate = DateTime.now();
           DateTime scheduleEndDate = DateTime.now();
@@ -430,7 +467,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
             showCustomSnackBar('confirm_password_does_not_matched'.tr);
           }else if(isPrescriptionRequired && checkoutController.pickedPrescriptions.isEmpty) {
             showCustomSnackBar('you_must_upload_prescription_for_this_order'.tr);
-          } else if(!_isCashOnDeliveryActive! && !_isDigitalPaymentActive! && !_isWalletActive) {
+          } else if(!_isCashOnDeliveryActive! && !_isDigitalPaymentActive! && !_isWalletActive && !_isOfflinePaymentActive) {
             showCustomSnackBar('no_payment_method_is_enabled'.tr);
           }else if(checkoutController.paymentMethodIndex == -1) {
             if(ResponsiveHelper.isDesktop(context)){
@@ -473,6 +510,14 @@ class CheckoutScreenState extends State<CheckoutScreen> {
             showCustomSnackBar('please_upload_your_prescription_images'.tr);
           }else if (!checkoutController.acceptTerms) {
             showCustomSnackBar('please_accept_privacy_policy_trams_conditions_refund_policy_first'.tr);
+          }else if (address.length <= 1 && (address.first.streetNumber?.trim().isNotEmpty != true || address.first.floor?.trim().isNotEmpty != true || address.first.house?.trim().isNotEmpty != true)){
+            addNewAddress(checkoutController);
+          }else if(checkoutController.orderType != 'take_away' && checkoutController.streetNumberController.text.isEmpty) {
+            showCustomSnackBar('write_street_number'.tr);
+          }else if(checkoutController.orderType != 'take_away' && checkoutController.houseController.text.isEmpty) {
+            showCustomSnackBar('write_house_number'.tr);
+          }else if(checkoutController.orderType != 'take_away' && checkoutController.floorController.text.isEmpty) {
+            showCustomSnackBar('write_floor_number'.tr);
           }
           else {
 
@@ -537,7 +582,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                     && Get.find<CouponController>().freeDelivery)) ? Get.find<CouponController>().coupon!.code : null,
                 storeId: _cartList![0]!.item!.storeId,
                 address: finalAddress!.address, latitude: finalAddress.latitude, longitude: finalAddress.longitude,
-                senderZoneId: null, addressType: finalAddress.addressType,
+                senderZoneId: finalAddress.zoneId, addressType: finalAddress.addressType,
                 contactPersonName: finalAddress.contactPersonName ?? '${Get.find<ProfileController>().userInfoModel!.fName} '
                     '${Get.find<ProfileController>().userInfoModel!.lName}',
                 contactPersonNumber: finalAddress.contactPersonNumber ?? Get.find<ProfileController>().userInfoModel!.phone,
@@ -548,7 +593,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                 chargePayer: null, dmTips: (checkoutController.orderType == 'take_away' || checkoutController.tipController.text == 'not_now') ? '' : checkoutController.tipController.text.trim(),
                 cutlery: Get.find<CartController>().addCutlery ? 1 : 0,
                 unavailableItemNote: Get.find<CartController>().notAvailableIndex != -1 ? Get.find<CartController>().notAvailableList[Get.find<CartController>().notAvailableIndex] : '',
-                deliveryInstruction: checkoutController.selectedInstruction != -1 ? AppConstants.deliveryInstructionList[checkoutController.selectedInstruction] : '',
+                deliveryInstruction: checkoutController.selectedInstruction != -1 ? AppConstants.deliveryInstructionList[checkoutController.selectedInstruction].tr : '',
                 partialPayment: checkoutController.isPartialPay ? 1 : 0, guestId: isGuestLogIn ? int.parse(AuthHelper.getGuestId()) : 0,
                 isBuyNow: widget.fromCart ? 0 : 1, guestEmail: isGuestLogIn ? finalAddress.email : null,
                 extraPackagingAmount: Get.find<CartController>().needExtraPackage ? checkoutController.store!.extraPackagingAmount : 0,
@@ -569,7 +614,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                   finalAddress!.address!, finalAddress.longitude!, finalAddress.latitude!, checkoutController.noteController.text,
                   checkoutController.pickedPrescriptions, (checkoutController.orderType == 'take_away' || checkoutController.tipController.text == 'not_now')
                       ? '' : checkoutController.tipController.text.trim(), checkoutController.selectedInstruction != -1
-                      ? AppConstants.deliveryInstructionList[checkoutController.selectedInstruction] : '', 0, 0, widget.fromCart, _isCashOnDeliveryActive!
+                      ? AppConstants.deliveryInstructionList[checkoutController.selectedInstruction].tr : '', 0, 0, widget.fromCart, _isCashOnDeliveryActive!
               );
             }
 
@@ -582,13 +627,13 @@ class CheckoutScreenState extends State<CheckoutScreen> {
   List<DropdownItem<int>> _getDropdownAddressList({required BuildContext context, required List<AddressModel>? addressList, required Store? store}) {
     List<DropdownItem<int>> dropDownAddressList = [];
 
-    dropDownAddressList.add(DropdownItem<int>(value: 0, child: SizedBox(
-      width: context.width > Dimensions.webMaxWidth ? Dimensions.webMaxWidth - 50 : context.width - 50,
-      child: AddressWidget(
-        address: AddressHelper.getUserAddressFromSharedPref(),
-        fromAddress: false, fromCheckout: true,
-      ),
-    )));
+    // dropDownAddressList.add(DropdownItem<int>(value: 0, child: SizedBox(
+    //   width: context.width > Dimensions.webMaxWidth ? Dimensions.webMaxWidth - 50 : context.width - 50,
+    //   child: AddressWidget(
+    //     address: AddressHelper.getUserAddressFromSharedPref(),
+    //     fromAddress: false, fromCheckout: true,
+    //   ),
+    // )));
 
     if(addressList != null && store != null) {
       for(int index=0; index<addressList.length; index++) {

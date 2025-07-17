@@ -192,9 +192,9 @@ class CheckoutController extends GetxController implements GetxService {
     }
   }
 
-  void setAddressIndex(int? index) {
+  void setAddressIndex(int? index,[bool needUpdate = true]) {
     _addressIndex = index;
-    update();
+    if(needUpdate) update();
   }
 
   void setGuestAddress(AddressModel? address, {bool isUpdate = true}){

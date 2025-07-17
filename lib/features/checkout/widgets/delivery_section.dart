@@ -13,6 +13,8 @@ import 'package:sixam_mart/common/widgets/custom_dropdown.dart';
 import 'package:sixam_mart/common/widgets/custom_text_field.dart';
 import 'package:sixam_mart/features/checkout/widgets/guest_delivery_address.dart';
 
+import '../../location/controllers/location_controller.dart';
+
 class DeliverySection extends StatelessWidget {
   final CheckoutController checkoutController;
   final List<AddressModel> address;
@@ -46,18 +48,7 @@ class DeliverySection extends StatelessWidget {
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text('deliver_to'.tr, style: robotoMedium),
             TextButton.icon(
-              onPressed: () async {
-                var address = await Get.toNamed(RouteHelper.getAddAddressRoute(true, false, checkoutController.store!.zoneId));
-                if(address != null) {
-                  checkoutController.getDistanceInKM(
-                    LatLng(double.parse(address.latitude), double.parse(address.longitude)),
-                    LatLng(double.parse(checkoutController.store!.latitude!), double.parse(checkoutController.store!.longitude!)),
-                  );
-                  checkoutController.streetNumberController.text = address.streetNumber ?? '';
-                  checkoutController.houseController.text = address.house ?? '';
-                  checkoutController.floorController.text = address.floor ?? '';
-                }
-              },
+              onPressed: () => addNewAddress(checkoutController),
               icon: const Icon(Icons.add, size: 20),
               label: Text('add_new'.tr, style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall)),
             ),
@@ -106,7 +97,7 @@ class DeliverySection extends StatelessWidget {
                           checkoutController.streetNumberController.text = address[checkoutController.addressIndex!].streetNumber ?? '';
                           checkoutController.houseController.text = address[checkoutController.addressIndex!].house ?? '';
                           checkoutController.floorController.text = address[checkoutController.addressIndex!].floor ?? '';
-                          Navigator.pop(context);
+                          Navigator.pop(Get.context!);
                         },
                         child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,7 +146,7 @@ class DeliverySection extends StatelessWidget {
             ),
             child: CustomDropdown<int>(
 
-              onChange: (int? value, int index) {
+              onChange: (int? value, int index)async {
                 checkoutController.getDistanceInKM(
                   LatLng(
                     double.parse(address[index].latitude!),
@@ -169,6 +160,8 @@ class DeliverySection extends StatelessWidget {
                 checkoutController.houseController.text = address[checkoutController.addressIndex!].house ?? '';
                 checkoutController.floorController.text = address[checkoutController.addressIndex!].floor ?? '';
 
+                final AddressModel? add = await Get.find<LocationController>().prepareZoneInCheckout(address[index]);
+                if(add != null) address[index] = add;
               },
               dropdownButtonStyle: DropdownButtonStyle(
                 height: 45,
@@ -199,6 +192,7 @@ class DeliverySection extends StatelessWidget {
             focusNode: checkoutController.streetNode,
             nextFocus: checkoutController.houseNode,
             controller: checkoutController.streetNumberController,
+            required: true,
           ) : const SizedBox(),
           SizedBox(height: !isDesktop ? Dimensions.paddingSizeLarge : 0),
 
@@ -212,6 +206,7 @@ class DeliverySection extends StatelessWidget {
                     focusNode: checkoutController.streetNode,
                     nextFocus: checkoutController.houseNode,
                     controller: checkoutController.streetNumberController,
+                    required: true,
                   ),
                 ) : const SizedBox(),
                 SizedBox(width: isDesktop ? Dimensions.paddingSizeSmall : 0),
@@ -220,6 +215,7 @@ class DeliverySection extends StatelessWidget {
                   child: CustomTextField(
                     titleText: 'write_house_number'.tr,
                     labelText: 'house'.tr,
+                    required: true,
                     inputType: TextInputType.text,
                     focusNode: checkoutController.houseNode,
                     nextFocus: checkoutController.floorNode,
@@ -233,6 +229,7 @@ class DeliverySection extends StatelessWidget {
                     titleText: 'write_floor_number'.tr,
                     labelText: 'floor'.tr,
                     inputType: TextInputType.text,
+                    required: true,
                     focusNode: checkoutController.floorNode,
                     inputAction: TextInputAction.done,
                     controller: checkoutController.floorController,
@@ -245,5 +242,18 @@ class DeliverySection extends StatelessWidget {
         ]),
       ) : const SizedBox(),
     ]);
+  }
+}
+void addNewAddress(CheckoutController checkoutController) async {
+  final address = await Get.toNamed(RouteHelper.getAddAddressRoute(true, false, checkoutController.store!.zoneId));
+  if(address != null && address is AddressModel) {
+    checkoutController.getDistanceInKM(
+      LatLng(double.parse(address.latitude ?? ''), double.parse(address.longitude ?? '')),
+      LatLng(double.parse(checkoutController.store!.latitude!), double.parse(checkoutController.store!.longitude!)),
+    );
+    checkoutController.streetNumberController.text = address.streetNumber ?? '';
+    checkoutController.houseController.text = address.house ?? '';
+    checkoutController.floorController.text = address.floor ?? '';
+    checkoutController.setAddressIndex(0,false);
   }
 }

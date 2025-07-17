@@ -397,7 +397,7 @@ class RouteHelper {
     GetPage(name: map, page: () {
       List<int> decode = base64Decode(Get.parameters['address']!.replaceAll(' ', '+'));
       AddressModel data = AddressModel.fromJson(jsonDecode(utf8.decode(decode)));
-      return getRoute(MapScreen(fromStore: Get.parameters['page'] == 'store', address: data, isFood: Get.parameters['module'] == 'true', storeName: Get.parameters['store-name'] ?? ''));
+      return getRoute(MapScreen(fromStore: Get.parameters['page'] == 'store', address: data, isFood: Get.parameters['module'] == 'true', storeName: Get.parameters['store-name'] ?? 'null'));
     }),
     GetPage(name: address, page: () => getRoute(const AddressScreen())),
     GetPage(name: orderSuccess, page: () => getRoute(OrderSuccessfulScreen(
