@@ -196,8 +196,8 @@ class RouteHelper {
   static String getForgotPassRoute() => forgotPassword;
   static String getResetPasswordRoute({String? phone, String? email, required String token, required String page}) => '$resetPassword?phone=$phone&token=$token&page=$page&email=$email';
   static String getSearchRoute({String? queryText}) => '$search?query=${queryText ?? ''}';
-  static String getStoreRoute({required int? id, required String page}) {
-    return '$store?id=$id&page=$page';
+  static String getStoreRoute({required int? id, required String page, String? slug}) {
+    return '$store?id=$id&page=$page&slug=$slug';
   }
   static String getOrderDetailsRoute(int? orderID, {bool? fromNotification, bool? fromOffline, String? contactNumber}) {
     return '$orderDetails?id=$orderID&from=${fromNotification.toString()}&from_offline=$fromOffline&contact=$contactNumber';

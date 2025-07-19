@@ -595,13 +595,11 @@ class StoreController extends GetxController implements GetxService {
   String? getDiscountType(Store store) => store.discount != null ? store.discount!.discountType : 'percent';
 
   void shareStore() {
+    String shareUrl = '${AppConstants.webHostedUrl}/${AppConstants.store}/${store?.slug}';
     if(ResponsiveHelper.isDesktop(Get.context)){
-      String shareUrl = '${AppConstants.webHostedUrl}${filteringUrl(store!.slug ?? '')}';
-
       Clipboard.setData(ClipboardData(text: shareUrl));
       showCustomSnackBar('store_url_copied'.tr, isError: false);
     } else {
-      String shareUrl = '${AppConstants.webHostedUrl}${filteringUrl(store!.slug ?? '')}';
       Share.share(shareUrl);
     }
   }

@@ -11,7 +11,7 @@ class AppConstants {
   static const String fontFamily = 'Roboto';
   static const bool payInWevView = false;
   static const int balanceInputLen = 10;
-  static const String webHostedUrl = 'https://6ammart-web.6amtech.com';
+  static const String webHostedUrl = 'https://fullcareu.com';
   static const bool useReactWebsite = false;
 
   static const String baseUrl = 'https://fullcareu.com';
@@ -199,6 +199,9 @@ class AppConstants {
   static const String addTaxiReviewUri = '/api/v1/rental/user/review/add';
   static const String getPopularTaxiSuggestionUri = '/api/v1/rental/vehicle/popular-suggestion/';
   static const String getProviderBannerUri = '/api/v1/rental/banners';
+  
+  /// custom strings
+  static const String store = 'store';
 
   /// Shared Key
   static const String theme = '6ammart_theme';

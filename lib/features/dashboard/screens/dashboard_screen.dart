@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:app_links/app_links.dart';
 import 'package:expandable_bottom_sheet/expandable_bottom_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -88,6 +89,9 @@ class DashboardScreenState extends State<DashboardScreen> {
       const OrderScreen(),
       const MenuScreen()
     ];
+    final AppLinks appLink = AppLinks();
+    appLink.getInitialLink().then(handleOpenedLinks);
+    appLink.uriLinkStream.listen(handleOpenedLinks);
   }
 
   _showRegistrationSuccessBottomSheet() {
@@ -334,3 +338,18 @@ class DashboardScreenState extends State<DashboardScreen> {
 
 }
 
+FutureOr<Null> handleOpenedLinks(Uri? value) async{
+  if(value != null){
+    final List<String> path = value.path.split('/');
+    if(path.firstOrNull?.trim().isEmpty == true) path.removeAt(0);
+    
+    if(path.length >= 2 && path[0] == AppConstants.store){
+      
+      String slug = path[1];
+      if(slug.trim().isNotEmpty == true){
+        await Get.toNamed(RouteHelper.getStoreRoute(id: null, page: 'store',slug: slug));
+        HomeScreen.loadData(false);
+      }
+    }
+  }
+}

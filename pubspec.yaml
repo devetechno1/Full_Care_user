@@ -72,6 +72,7 @@ dependencies:
   image_network: ^2.6.0
   flutter_localizations:
     sdk: flutter
+  app_links: ^6.4.0
 
 
 dependency_overrides:

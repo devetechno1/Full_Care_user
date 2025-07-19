@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.fullcareu",
+      "sha256_cert_fingerprints": [
+        "C8:BF:A7:E2:4D:FB:A8:DD:1A:9E:BD:9E:61:EE:EA:F7:12:C7:C6:EE:9A:4D:E0:16:B0:ED:67:9F:E5:27:EA:50"
+      ]
+    }
+  }
+]
