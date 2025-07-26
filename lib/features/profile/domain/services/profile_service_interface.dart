@@ -10,5 +10,4 @@ abstract class ProfileServiceInterface {
   Future<ResponseModel> updateProfile(UpdateUserModel userInfoModel, XFile? data, String token);
   Future<ResponseModel> changePassword(UserInfoModel userInfoModel);
   Future<Response> deleteUser();
-  Future<XFile?> pickImageFromGallery();
 }

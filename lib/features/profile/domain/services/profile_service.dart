@@ -36,20 +36,20 @@ class ProfileService implements ProfileServiceInterface {
     return await profileRepositoryInterface.delete(null);
   }
 
-  @override
-  Future<XFile?> pickImageFromGallery() async {
-    XFile? pickedFile;
-    XFile? pickLogo = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if(pickLogo != null) {
-      await pickLogo.length().then((value) {
-        if(value > 1000000) {
-          showCustomSnackBar('please_upload_lower_size_file'.tr);
-        }else {
-          pickedFile = pickLogo;
-        }
-      });
-    }
-    return pickedFile;
-  }
 
+}
+
+Future<XFile?> pickImageFromGallery() async {
+  XFile? pickedFile;
+  XFile? pickLogo = await ImagePicker().pickImage(source: ImageSource.gallery);
+  if(pickLogo != null) {
+    await pickLogo.length().then((value) {
+      if(value > 1000000) {
+        showCustomSnackBar('please_upload_lower_size_file'.tr);
+      }else {
+        pickedFile = pickLogo;
+      }
+    });
+  }
+  return pickedFile;
 }

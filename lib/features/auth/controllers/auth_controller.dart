@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sixam_mart/common/models/response_model.dart';
 import 'package:sixam_mart/common/widgets/custom_snackbar.dart';
 import 'package:sixam_mart/features/cart/controllers/cart_controller.dart';
@@ -16,6 +17,8 @@ import 'package:sixam_mart/features/verification/screens/verification_screen.dar
 import 'package:sixam_mart/helper/responsive_helper.dart';
 import 'package:sixam_mart/helper/route_helper.dart';
 
+import '../../profile/domain/services/profile_service.dart';
+
 class AuthController extends GetxController implements GetxService {
   final AuthServiceInterface authServiceInterface;
   AuthController({required this.authServiceInterface}){
@@ -28,6 +31,9 @@ class AuthController extends GetxController implements GetxService {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
+  XFile? _pickedFile;
+  XFile? get pickedFile => _pickedFile;
+  
   bool _guestLoading = false;
   bool get guestLoading => _guestLoading;
 
@@ -43,7 +49,14 @@ class AuthController extends GetxController implements GetxService {
   bool _isNumberLogin = false;
   bool get isNumberLogin => _isNumberLogin;
 
-  var countryDialCode= "+880";
+  var countryDialCode= "+20";
+  
+  void pickImage() async {
+    final XFile? temp = await pickImageFromGallery();
+    if(temp != null) _pickedFile = temp;
+    update();
+  }
+  void removeImage() => _pickedFile = null;
 
 /*  Future<ResponseModel> registration(SignUpBodyModel signUpBody) async {
     _isLoading = true;

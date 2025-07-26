@@ -14,6 +14,8 @@ import 'package:sixam_mart/helper/route_helper.dart';
 import 'package:sixam_mart/common/widgets/custom_snackbar.dart';
 import 'package:sixam_mart/features/profile/domain/services/profile_service_interface.dart';
 
+import '../domain/services/profile_service.dart';
+
 class ProfileController extends GetxController implements GetxService {
   final ProfileServiceInterface profileServiceInterface;
   ProfileController({required this.profileServiceInterface});
@@ -124,7 +126,7 @@ class ProfileController extends GetxController implements GetxService {
   }
 
   void pickImage() async {
-    _pickedFile = await profileServiceInterface.pickImageFromGallery();
+    _pickedFile = await pickImageFromGallery();
     update();
   }
 

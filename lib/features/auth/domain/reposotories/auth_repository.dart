@@ -39,7 +39,12 @@ class AuthRepository implements AuthRepositoryInterface{
 
   @override
   Future<Response> registration(SignUpBodyModel signUpBody) async {
-    return await apiClient.postData(AppConstants.registerUri, signUpBody.toJson(), handleError: false);
+    return await apiClient.postMultipartData(
+      AppConstants.registerUri, 
+      signUpBody.toJson(),
+      [MultipartBody("image", signUpBody.image)], 
+      handleError: false,
+    );
   }
 
 

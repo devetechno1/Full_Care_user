@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sixam_mart/common/models/response_model.dart';
 import 'package:sixam_mart/common/widgets/custom_button.dart';
 import 'package:sixam_mart/common/widgets/custom_snackbar.dart';
@@ -53,6 +55,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
   @override
   void initState() {
     super.initState();
+    Get.find<AuthController>().removeImage();
     _formKeySignUp = GlobalKey<FormState>();
     _countryDialCode = CountryCode.fromCountryCode(Get.find<SplashController>().configModel!.country!).dialCode;
   }
@@ -81,17 +84,52 @@ class SignUpWidgetState extends State<SignUpWidget> {
               padding: EdgeInsets.all(isDesktop ? Dimensions.paddingSizeExtraLarge : 0),
               child: Column(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center, children: [
 
-                  isDesktop ? Padding(
-                    padding: const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeLarge),
-                    child: Image.asset(Images.logo, width: 125),
-                  ) : const SizedBox(),
+                  // !isDesktop ? Padding(
+                  //   padding: const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeLarge),
+                  //   child: Image.asset(Images.logo, width: 125),
+                  // ) : const SizedBox(),
 
                   isDesktop ? Align(
                     alignment: Alignment.topLeft,
                     child: Text('sign_up'.tr, style: robotoBold.copyWith(fontSize: Dimensions.fontSizeExtraLarge)),
                   ) : const SizedBox(),
 
-                SizedBox(height: isDesktop ? Dimensions.paddingSizeExtraLarge : Dimensions.paddingSizeSmall),
+                  Center(child: SizedBox.square(
+                    dimension: 100,
+                    child: Stack(children: [
+                      if(authController.pickedFile != null)
+                        ClipOval(child:  
+                          GetPlatform.isWeb 
+                            ? Image.network(authController.pickedFile!.path, fit: BoxFit.cover) 
+                            : Image.file(File(authController.pickedFile!.path), fit: BoxFit.cover) 
+                        ),
+                    
+                      Positioned(
+                        bottom: 0, right: 0, top: 0, left: 0,
+                        child: InkWell(
+                          onTap: () => authController.pickImage(),
+                          borderRadius: BorderRadius.circular(500),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.black.withValues(alpha: 0.2), shape: BoxShape.circle,
+                              border: Border.all(width: 1, color: Theme.of(context).primaryColor),
+                            ),
+                            child: Container(
+                              margin: const EdgeInsets.all(25),
+                              decoration: BoxDecoration(
+                                border: Border.all(width: 2, color: Colors.white),
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(Icons.camera_alt, color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    
+                    ]),
+                  )),
+
+                  const SizedBox(height: Dimensions.paddingSizeExtraLarge),
 
                   Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     Expanded(
@@ -379,13 +417,17 @@ class SignUpWidgetState extends State<SignUpWidget> {
     String password = _passwordController.text.trim();
     String confirmPassword = _confirmPasswordController.text.trim();
     String referCode = _referCodeController.text.trim();
+    XFile? image = Get.find<AuthController>().pickedFile;
+
 
     String numberWithCountryCode = countryCode + number.removeZerosInFirst;
     PhoneValid phoneValid = await CustomValidator.isPhoneValid(numberWithCountryCode);
     numberWithCountryCode = phoneValid.phone;
 
     if (_formKeySignUp!.currentState!.validate()) {
-      if (name.isEmpty) {
+      if (image == null) {
+        showCustomSnackBar('please_upload_identity_image'.tr);
+      } else if (name.isEmpty) {
         showCustomSnackBar('please_enter_your_name'.tr);
       } else if (email.isEmpty) {
         showCustomSnackBar('enter_email_address'.tr);
@@ -410,6 +452,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
           phone: numberWithCountryCode,
           password: password,
           refCode: referCode,
+          image: image
         );
         return signUpBody;
       }
