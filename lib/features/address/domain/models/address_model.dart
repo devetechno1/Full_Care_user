@@ -18,6 +18,7 @@ class AddressModel {
   List<ZoneData>? zoneData;
   List<int>? areaIds;
   String? email;
+  String? landmark;
 
   AddressModel({
     this.id,
@@ -37,6 +38,7 @@ class AddressModel {
     this.zoneData,
     this.areaIds,
     this.email,
+    this.landmark,
   });
 
   AddressModel.fromJson(Map<String, dynamic> json) {
@@ -54,6 +56,7 @@ class AddressModel {
     streetNumber = json['road'];
     house = json['house'];
     floor = json['floor'] ;
+    landmark = json['landmark'] ;
     if (json['zone_data'] != null) {
       zoneData = [];
       json['zone_data'].forEach((v) {
@@ -82,6 +85,7 @@ class AddressModel {
     data['road'] = streetNumber;
     data['house'] = house;
     data['floor'] = floor;
+    data['landmark'] = landmark;
     if (zoneData != null) {
       data['zone_data'] = zoneData!.map((v) => v.toJson()).toList();
     }
