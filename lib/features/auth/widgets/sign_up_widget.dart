@@ -94,39 +94,44 @@ class SignUpWidgetState extends State<SignUpWidget> {
                     child: Text('sign_up'.tr, style: robotoBold.copyWith(fontSize: Dimensions.fontSizeExtraLarge)),
                   ) : const SizedBox(),
 
-                  Center(child: SizedBox.square(
-                    dimension: 100,
-                    child: Stack(children: [
-                      if(authController.pickedFile != null)
-                        ClipOval(child:  
-                          GetPlatform.isWeb 
-                            ? Image.network(authController.pickedFile!.path, fit: BoxFit.cover) 
-                            : Image.file(File(authController.pickedFile!.path), fit: BoxFit.cover) 
-                        ),
-                    
-                      Positioned(
-                        bottom: 0, right: 0, top: 0, left: 0,
-                        child: InkWell(
-                          onTap: () => authController.pickImage(),
-                          borderRadius: BorderRadius.circular(500),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.black.withValues(alpha: 0.2), shape: BoxShape.circle,
-                              border: Border.all(width: 1, color: Theme.of(context).primaryColor),
+                  Center(child: Builder(
+                    builder: (context) {
+                      const double dimensions = 100;
+                      return SizedBox.square(
+                        dimension: dimensions,
+                        child: Stack(children: [
+                          if(authController.pickedFile != null)
+                            ClipOval(child:  
+                              GetPlatform.isWeb 
+                                ? Image.network(height: dimensions, width: dimensions, authController.pickedFile!.path, fit: BoxFit.cover) 
+                                : Image.file(height: dimensions, width: dimensions, File(authController.pickedFile!.path), fit: BoxFit.cover) 
                             ),
-                            child: Container(
-                              margin: const EdgeInsets.all(25),
-                              decoration: BoxDecoration(
-                                border: Border.all(width: 2, color: Colors.white),
-                                shape: BoxShape.circle,
+                        
+                          Positioned(
+                            bottom: 0, right: 0, top: 0, left: 0,
+                            child: InkWell(
+                              onTap: () => authController.pickImage(),
+                              borderRadius: BorderRadius.circular(500),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withValues(alpha:  0.15), shape: BoxShape.circle,
+                                  border: Border.all(width: 1, color: Theme.of(context).primaryColor),
+                                ),
+                                child: Container(
+                                  margin: const EdgeInsets.all(25),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(width: 2, color: Colors.white),
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: const Icon(Icons.camera_alt, color: Colors.white),
+                                ),
                               ),
-                              child: const Icon(Icons.camera_alt, color: Colors.white),
                             ),
                           ),
-                        ),
-                      ),
-                    
-                    ]),
+                        
+                        ]),
+                      );
+                    }
                   )),
 
                   const SizedBox(height: Dimensions.paddingSizeExtraLarge),

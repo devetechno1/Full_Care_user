@@ -125,7 +125,7 @@ class ApiClient extends GetxService {
           Uint8List list = await multipart.file!.readAsBytes();
           request.files.add(http.MultipartFile(
             multipart.key, multipart.file!.readAsBytes().asStream(), list.length,
-            filename: '${DateTime.now().toString()}.png',
+            filename: '${DateTime.now().toString()}_${multipart.file!.name}',
           ));
         }
       }

@@ -53,6 +53,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
   final TextEditingController _streetNumberController = TextEditingController();
   final TextEditingController _houseController = TextEditingController();
   final TextEditingController _floorController = TextEditingController();
+  final TextEditingController _landmarkController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final FocusNode _addressNode = FocusNode();
   final FocusNode _levelNode = FocusNode();
@@ -61,6 +62,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
   final FocusNode _streetNode = FocusNode();
   final FocusNode _houseNode = FocusNode();
   final FocusNode _floorNode = FocusNode();
+  final FocusNode _landmarkNode = FocusNode();
   final FocusNode _emailFocus = FocusNode();
   CameraPosition? _cameraPosition;
   late LatLng _initialPosition;
@@ -80,6 +82,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
       _streetNumberController.text = widget.address!.streetNumber ?? '';
       _houseController.text = widget.address!.house ?? '';
       _floorController.text = widget.address!.floor ?? '';
+      _landmarkController.text = widget.address!.landmark ?? '';
 
     }else if(Get.find<ProfileController>().userInfoModel != null && _contactPersonNameController.text.isEmpty) {
       _contactPersonNameController.text = '${Get.find<ProfileController>().userInfoModel!.fName} ${Get.find<ProfileController>().userInfoModel!.lName}';
@@ -442,12 +445,23 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                               titleText: 'floor'.tr,
                                               inputType: TextInputType.text,
                                               focusNode: _floorNode,
-                                              inputAction: TextInputAction.done,
                                               controller: _floorController,
                                               required: true,
+                                              nextFocus: _landmarkNode,
                                             ),
                                           ),
                                         ]),
+                                        const SizedBox(height: Dimensions.paddingSizeSmall),
+                                        CustomTextField(
+                                          hintText: 'landmark'.tr,
+                                          showLabelText: false,
+                                          showTitle: true,
+                                          titleText: 'write_landmark'.tr,
+                                          inputType: TextInputType.text,
+                                          focusNode: _landmarkNode,
+                                          inputAction: TextInputAction.done,
+                                          controller: _landmarkController,
+                                        ),
                                         const SizedBox(height: Dimensions.paddingSizeLarge),
 
                                         button(locationController),
@@ -720,12 +734,23 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                         titleText: 'write_floor_number'.tr,
                         inputType: TextInputType.text,
                         focusNode: _floorNode,
-                        inputAction: TextInputAction.done,
                         controller: _floorController,
+                        nextFocus: _landmarkNode,
                         required: true,
                       ),
                     ),
                   ]),
+
+                  const SizedBox(height: Dimensions.paddingSizeExtremeLarge),
+
+                  CustomTextField(
+                    labelText: 'landmark'.tr,
+                    titleText: 'write_landmark'.tr,
+                    inputType: TextInputType.text,
+                    focusNode: _landmarkNode,
+                    inputAction: TextInputAction.done,
+                    controller: _landmarkController,
+                  ),
 
                   const SizedBox(height: Dimensions.paddingSizeLarge),
 
@@ -827,6 +852,8 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
         streetNumber: _streetNumberController.text,
         house: _houseController.text,
         floor: _floorController.text,
+        landmark: _landmarkController.text,
+        // email: widget.forGuest ? _emailController.text : null,
       );
       return addressModel;
     }
