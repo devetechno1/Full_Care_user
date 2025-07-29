@@ -14,7 +14,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../helper/route_helper.dart';
-import '../../../main.dart';
 
 class SupportScreen extends StatefulWidget {
   const SupportScreen({super.key});
@@ -26,8 +25,8 @@ class SupportScreen extends StatefulWidget {
 class _SupportScreenState extends State<SupportScreen> {
   @override
   Widget build(BuildContext context) {
- final String url =
-            "https://wa.me/${Get.find<SplashController>().configModel!.phone!.replaceAll('+', '')}";
+    final String url =
+        "https://wa.me/${Get.find<SplashController>().configModel!.phone!.replaceAll('+', '')}";
     return Scaffold(
       appBar: CustomAppBar(title: 'help_support'.tr),
       endDrawer: const MenuDrawer(),
@@ -103,8 +102,7 @@ class _SupportScreenState extends State<SupportScreen> {
                     ),
                     const SizedBox(height: Dimensions.paddingSizeSmall),
                     SupportButtonWidget(
-                      
-                     image:  'assets/image/whatsapp_icon.png',
+                      image: 'assets/image/whatsapp_icon.png',
                       title: 'whatsapp'.tr,
                       color: Colors.green,
                       info: Get.find<SplashController>().configModel!.phone,

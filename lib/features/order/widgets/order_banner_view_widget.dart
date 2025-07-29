@@ -23,8 +23,8 @@ class OrderBannerViewWidget extends StatelessWidget {
       DateConverter.isBeforeTime(order.scheduleAt) && Get.find<SplashController>().getModuleConfig(order.moduleType).newVariation! ? ongoing ? Column(children: [
 
         ClipRRect(borderRadius: BorderRadius.circular(10), child: Image.asset(
-          order.orderStatus == 'pending' ? Images.pendingFoodOrderDetails : (order.orderStatus == 'confirmed' || order.orderStatus == 'processing' || order.orderStatus == 'handover')
-              ? Images.preparingFoodOrderDetails : Images.ongoingAnimation, fit: BoxFit.contain, height: 200,
+          order.orderStatus == 'pending' ? Images.nurse : (order.orderStatus == 'confirmed' || order.orderStatus == 'processing' || order.orderStatus == 'handover')
+              ? Images.nurse : Images.ongoingAnimation, fit: BoxFit.contain, height: 200,
         )),
         const SizedBox(height: Dimensions.paddingSizeDefault),
 

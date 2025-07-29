@@ -149,6 +149,7 @@ class Images {
   static const String chatOrderDetails = 'assets/image/chat_order_details.png';
   static const String phoneOrderDetails = 'assets/image/phone_order_details.png';
   static const String pendingFoodOrderDetails = 'assets/image/pending_food.gif';
+  static const String nurse = 'assets/image/nurse.gif';
   static const String filter = 'assets/image/filter_icon.png';
   static const String partialPay = 'assets/image/partial_pay.png';
   static const String sslcommerz = 'assets/image/sslcommerz.png';
