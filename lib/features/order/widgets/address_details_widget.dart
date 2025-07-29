@@ -16,6 +16,11 @@ class AddressDetailsWidget extends StatelessWidget {
         style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall), maxLines: 4, overflow: TextOverflow.ellipsis,
       ),
       const SizedBox(height: 5),
+        (addressDetails!.landmark != null && addressDetails!.landmark!.isNotEmpty) ? Text('${'landmark'.tr}: ${addressDetails!.landmark!}',
+          style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeExtraSmall), maxLines: 2, overflow: TextOverflow.ellipsis,
+        ) : const SizedBox(),
+
+      const SizedBox(height: 5),
 
       Wrap(children: [
         (addressDetails!.streetNumber != null && addressDetails!.streetNumber!.isNotEmpty) ? Text('${'street_number'.tr}: ${addressDetails!.streetNumber!}',
