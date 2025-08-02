@@ -38,13 +38,13 @@ class AdvertisementRepository implements AdvertisementRepositoryInterface {
           });
         }
     }
-    Response response = await apiClient.getData(AppConstants.advertisementListUri);
-    if(response.statusCode == 200) {
-      advertisementList = [];
-      response.body.forEach((data) {
-        advertisementList?.add(AdvertisementModel.fromJson(data));
-      });
-    }
+    // Response response = await apiClient.getData(AppConstants.advertisementListUri);
+    // if(response.statusCode == 200) {
+    //   advertisementList = [];
+    //   response.body.forEach((data) {
+    //     advertisementList?.add(AdvertisementModel.fromJson(data));
+    //   });
+    // }
     return advertisementList;
   }
 

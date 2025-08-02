@@ -44,9 +44,9 @@ class FoodHomeScreen extends StatelessWidget {
       ),
 
       const CategoryView(),
+      const HighlightWidget(),
       isLoggedIn ? const VisitAgainView(fromFood: true) : const SizedBox(),
       const SpecialOfferView(isFood: true, isShop: false),
-      const HighlightWidget(),
       const TopOffersNearMe(),
       const BestReviewItemView(),
       const BestStoreNearbyView(),

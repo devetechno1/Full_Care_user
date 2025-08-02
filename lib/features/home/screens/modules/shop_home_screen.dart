@@ -27,7 +27,6 @@ class ShopHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isLoggedIn = AuthHelper.isLoggedIn();
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-
       Container(
         width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
@@ -39,7 +38,6 @@ class ShopHomeScreen extends StatelessWidget {
         child: const Column(
           children: [
             BadWeatherWidget(),
-
             BannerView(isFeatured: false),
             SizedBox(height: 12),
           ],
@@ -48,10 +46,10 @@ class ShopHomeScreen extends StatelessWidget {
 
       const CategoryView(),
       isLoggedIn ? const VisitAgainView() : const SizedBox(),
+      const HighlightWidget(),
       const MostPopularItemView(isFood: false, isShop: true),
       const FlashSaleViewWidget(),
       const MiddleSectionBannerView(),
-      const HighlightWidget(),
       const PopularStoreView(),
       const BrandsViewWidget(),
       const SpecialOfferView(isFood: false, isShop: true),
@@ -60,8 +58,10 @@ class ShopHomeScreen extends StatelessWidget {
       const TopOffersNearMe(),
       const FeaturedCategoriesView(),
       // const StoreWiseBannerView(),
-      const ItemThatYouLoveView(forShop: true,),
-      const NewOnMartView(isShop: true,isPharmacy: false),
+      const ItemThatYouLoveView(
+        forShop: true,
+      ),
+      const NewOnMartView(isShop: true, isPharmacy: false),
       const PromotionalBannerView(),
     ]);
   }
