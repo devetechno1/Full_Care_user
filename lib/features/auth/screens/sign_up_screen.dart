@@ -6,6 +6,8 @@ import 'package:sixam_mart/common/widgets/menu_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../controllers/auth_controller.dart';
+
 class SignUpScreen extends StatefulWidget {
   final bool exitFromApp;
   const SignUpScreen({super.key, this.exitFromApp = false});
@@ -15,51 +17,77 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class SignUpScreenState extends State<SignUpScreen> {
+  initState() {
+    super.initState();
+    if (Get.find<AuthController>().showPassView) {
+      Get.find<AuthController>().showHidePass(isUpdate: false);
+    }
+    Get.find<AuthController>().validPassCheck('', isUpdate: false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: (ResponsiveHelper.isDesktop(context) ? null : !widget.exitFromApp ? AppBar(leading: IconButton(
-        onPressed: () => Get.back(),
-        icon: Icon(Icons.arrow_back_ios_rounded, color: Theme.of(context).textTheme.bodyLarge!.color),
-      ), elevation: 0, backgroundColor: Colors.transparent,
-        actions: const [SizedBox()],
-      ) : null),
-      backgroundColor: ResponsiveHelper.isDesktop(context) ? Colors.transparent : Theme.of(context).cardColor,
-      endDrawer: const MenuDrawer(), endDrawerEnableOpenDragGesture: false,
+      appBar: (ResponsiveHelper.isDesktop(context)
+          ? null
+          : !widget.exitFromApp
+              ? AppBar(
+                  leading: IconButton(
+                    onPressed: () => Get.back(),
+                    icon: Icon(Icons.arrow_back_ios_rounded,
+                        color: Theme.of(context).textTheme.bodyLarge!.color),
+                  ),
+                  elevation: 0,
+                  backgroundColor: Colors.transparent,
+                  actions: const [SizedBox()],
+                )
+              : null),
+      backgroundColor: ResponsiveHelper.isDesktop(context)
+          ? Colors.transparent
+          : Theme.of(context).cardColor,
+      endDrawer: const MenuDrawer(),
+      endDrawerEnableOpenDragGesture: false,
       body: SafeArea(
         child: Container(
           width: context.width > 700 ? 700 : context.width,
-          padding: context.width > 700 ? const EdgeInsets.all(0) : const EdgeInsets.all(Dimensions.paddingSizeLarge),
-          margin: context.width > 700 ? const EdgeInsets.all(Dimensions.paddingSizeDefault) : null,
-          decoration: context.width > 700 ? BoxDecoration(
-            color: Theme.of(context).cardColor,
-            borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-          ) : null,
+          padding: context.width > 700
+              ? const EdgeInsets.all(0)
+              : const EdgeInsets.all(Dimensions.paddingSizeLarge),
+          margin: context.width > 700
+              ? const EdgeInsets.all(Dimensions.paddingSizeDefault)
+              : null,
+          decoration: context.width > 700
+              ? BoxDecoration(
+                  color: Theme.of(context).cardColor,
+                  borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
+                )
+              : null,
           child: SingleChildScrollView(
             child: Column(children: [
-        
-              ResponsiveHelper.isDesktop(context) ? Align(
-                alignment: Alignment.topRight,
-                child: IconButton(
-                  onPressed: () => Get.back(),
-                  icon: const Icon(Icons.clear),
-                ),
-              ) : const SizedBox(),
-        
+              ResponsiveHelper.isDesktop(context)
+                  ? Align(
+                      alignment: Alignment.topRight,
+                      child: IconButton(
+                        onPressed: () => Get.back(),
+                        icon: const Icon(Icons.clear),
+                      ),
+                    )
+                  : const SizedBox(),
+
               // Image.asset(Images.logo, width: 125),
               // const SizedBox(height: Dimensions.paddingSizeExtraLarge),
-        
+
               Align(
                 alignment: Alignment.topLeft,
-                child: Text('sign_up'.tr, style: robotoBold.copyWith(fontSize: Dimensions.fontSizeExtraLarge)),
+                child: Text('sign_up'.tr,
+                    style: robotoBold.copyWith(
+                        fontSize: Dimensions.fontSizeExtraLarge)),
               ),
               const SizedBox(height: Dimensions.paddingSizeDefault),
-        
+
               const SignUpWidget(),
-        
             ]),
           ),
-        
         ),
       ),
     );

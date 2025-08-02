@@ -49,7 +49,7 @@ class CustomTextField extends StatefulWidget {
 
   const CustomTextField({
     super.key,
-    this.titleText = 'Write something...',
+    this.titleText = '',
     this.hintText = '',
     this.controller,
     this.focusNode,

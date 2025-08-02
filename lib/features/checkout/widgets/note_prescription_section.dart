@@ -18,7 +18,7 @@ class NoteAndPrescriptionSection extends StatelessWidget {
 
       CustomTextField(
         controller: checkoutController.noteController,
-        titleText: 'please_provide_extra_napkin'.tr,
+        // titleText: 'please_provide_extra_napkin'.tr,
         showLabelText: false,
         maxLines: 3,
         inputType: TextInputType.multiline,

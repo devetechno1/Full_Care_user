@@ -41,7 +41,7 @@ class ProfileService implements ProfileServiceInterface {
 
 Future<XFile?> pickImageFromGallery() async {
   XFile? pickedFile;
-  XFile? pickLogo = await ImagePicker().pickImage(source: ImageSource.gallery);
+  XFile? pickLogo = await ImagePicker().pickImage(source: ImageSource.camera);
   if(pickLogo != null) {
     await pickLogo.length().then((value) {
       if(value > 1000000) {
