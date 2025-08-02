@@ -67,8 +67,8 @@ class ItemController extends GetxController implements GetxService {
 
   String _discountedType = 'all';
   String get discountedType => _discountedType;
-  
-  static final List<String> _itemTypeList = ['all', 'veg', 'non_veg'];
+  static final List<String> _itemTypeList = ['all',];
+  // static final List<String> _itemTypeList = ['all', 'veg', 'non_veg'];
   List<String> get itemTypeList => _itemTypeList;
   
   int _imageIndex = 0;
