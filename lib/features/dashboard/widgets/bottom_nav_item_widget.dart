@@ -19,14 +19,16 @@ class BottomNavItemWidget extends StatelessWidget {
 
           Image.asset(
             isSelected ? selectedIcon : unSelectedIcon, height: 25, width: 25,
-            color: isSelected ? Theme.of(context).primaryColor : Theme.of(context).textTheme.bodyMedium!.color!,
-          ),
+            color:  
+             Theme.of(context).bottomAppBarTheme.surfaceTintColor!,
+         ),
 
           SizedBox(height: isSelected ? Dimensions.paddingSizeExtraSmall : Dimensions.paddingSizeSmall),
 
           Text(
             title,
-            style: robotoRegular.copyWith(color: isSelected ? Theme.of(context).primaryColor : Theme.of(context).textTheme.bodyMedium!.color!, fontSize: 12),
+            style: robotoRegular.copyWith(color:  
+             Theme.of(context).bottomAppBarTheme.surfaceTintColor!, fontSize: 12),
           ),
 
         ]),

@@ -256,17 +256,17 @@ class FoodCategoryView extends StatelessWidget {
     return Stack(children: [
       Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         SizedBox(
-          height: 160,
+          height: 100,
           child: categoryController.categoryList != null ? ListView.builder(
             controller: scrollController,
             physics: const BouncingScrollPhysics(),
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.only(left: Dimensions.paddingSizeDefault, top: Dimensions.paddingSizeDefault),
+            padding: const EdgeInsets.only(left: Dimensions.paddingSizeDefault),
             itemCount: categoryController.categoryList!.length > 10 ? 10 : categoryController.categoryList!.length,
             itemBuilder: (context, index) {
               return Padding(
-                padding: const EdgeInsets.only(bottom: Dimensions.paddingSizeDefault, right: Dimensions.paddingSizeDefault, top: Dimensions.paddingSizeDefault),
+                padding: const EdgeInsets.only(right: Dimensions.paddingSizeDefault),
                 child: InkWell(
                   onTap: () {
                     if(index == 9 && categoryController.categoryList!.length > 10) {

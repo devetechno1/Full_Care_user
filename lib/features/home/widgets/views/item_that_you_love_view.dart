@@ -52,7 +52,8 @@ class _ItemThatYouLoveViewState extends State<ItemThatYouLoveView> {
         Padding(
           padding: const EdgeInsets.only(top: Dimensions.paddingSizeDefault, left: Dimensions.paddingSizeDefault, right: Dimensions.paddingSizeDefault),
           child: Align(
-            alignment: widget.forShop ? Alignment.center : Alignment.centerLeft,
+
+            alignment: widget.forShop ? Alignment.center : Alignment.center,
             child: Text('item_that_you_love'.tr, style: robotoBold.copyWith(fontSize: Dimensions.fontSizeLarge)),
           ),
         ),

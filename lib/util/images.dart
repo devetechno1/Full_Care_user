@@ -1,5 +1,7 @@
 class Images {
   static const String logo = 'assets/image/logo.png';
+  static const String splashLogo = 'assets/image/splash_logo.png';
+  static const String loginLogo = 'assets/image/login.png';
   static const String placeholder = 'assets/image/placeholder.jpg';
   static const String notificationPlaceholder = 'assets/image/notification_placeholder.jpg';
   static const String arabic = 'assets/image/arabic.png';
@@ -17,8 +19,7 @@ class Images {
   static const String restaurantMarker = 'assets/image/restaurant_marker.png';
   static const String deliveryManMarker = 'assets/image/delivery_man_marker.png';
   static const String user = 'assets/image/user.png';
-    static const String picker = 'assets/image/picker.png';
-
+  static const String picker = 'assets/image/picker.png';
   static const String coupon = 'assets/image/coupon.png';
   static const String couponBgLight = 'assets/image/coupon_bg_light.png';
   static const String couponBgDark = 'assets/image/coupon_bg_dark.png';

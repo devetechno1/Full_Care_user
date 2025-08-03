@@ -6,6 +6,7 @@ ThemeData light({
   fontFamily: AppConstants.fontFamily,
   primaryColor: color,
   secondaryHeaderColor: const Color.fromARGB(255, 97, 164, 195),
+  splashColor: const Color(0xFF2788c6),
   disabledColor: const Color(0xFFBABFC4),
   brightness: Brightness.light,
   hintColor: const Color(0xFF9F9F9F),

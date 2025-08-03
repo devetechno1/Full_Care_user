@@ -74,6 +74,7 @@ class SignInScreenState extends State<SignInScreen> {
         endDrawer: const MenuDrawer(),endDrawerEnableOpenDragGesture: false,
 
         body: SafeArea(
+          
           child: Align(
             alignment: Alignment.center,
             child: Container(
@@ -86,7 +87,6 @@ class SignInScreenState extends State<SignInScreen> {
               ) : null,
               child: SingleChildScrollView(
                 child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-
                   ResponsiveHelper.isDesktop(context) ? Align(
                     alignment: Alignment.topRight,
                     child: IconButton(
@@ -95,11 +95,11 @@ class SignInScreenState extends State<SignInScreen> {
                     ),
                   ) : const SizedBox(),
 
-                  Image.asset(Images.logo, width: 125),
+                  Image.asset(Images.loginLogo, width: double.infinity,fit: BoxFit.contain),
                   const SizedBox(height: Dimensions.paddingSizeExtremeLarge),
 
                   SignInView(exitFromApp: widget.exitFromApp, backFromThis: widget.backFromThis, fromResetPassword: widget.fromResetPassword, isOtpViewEnable: (v){},),
-
+                  const SizedBox(height: Dimensions.paddingSizeExtraOverOverLarge),
                 ]),
               ),
             ),

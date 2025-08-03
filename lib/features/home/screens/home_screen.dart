@@ -13,7 +13,6 @@ import 'package:sixam_mart/features/item/controllers/campaign_controller.dart';
 import 'package:sixam_mart/features/category/controllers/category_controller.dart';
 import 'package:sixam_mart/features/coupon/controllers/coupon_controller.dart';
 import 'package:sixam_mart/features/flash_sale/controllers/flash_sale_controller.dart';
-import 'package:sixam_mart/features/language/controllers/language_controller.dart';
 import 'package:sixam_mart/features/location/controllers/location_controller.dart';
 import 'package:sixam_mart/features/notification/controllers/notification_controller.dart';
 import 'package:sixam_mart/features/item/controllers/item_controller.dart';
@@ -46,6 +45,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sixam_mart/features/home/widgets/module_view.dart';
 import 'package:sixam_mart/features/parcel/screens/parcel_category_screen.dart';
+
+import '../../../theme/colors.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -216,6 +217,7 @@ class _HomeScreenState extends State<HomeScreen> {
           endDrawerEnableOpenDragGesture: false,
           backgroundColor: Theme.of(context).colorScheme.surface,
           body: isParcel ? const ParcelCategoryScreen() : SafeArea(
+            top: false,
             child: RefreshIndicator(
               onRefresh: () async {
                 splashController.setRefreshing(true);
@@ -269,83 +271,104 @@ class _HomeScreenState extends State<HomeScreen> {
                 controller: _scrollController,
                 physics: const AlwaysScrollableScrollPhysics(),
                 slivers: [
-
+            
                   /// App Bar
-                  SliverAppBar(
-                    floating: true,
+                    SliverAppBar(
+                      floating: true,
+                      flexibleSpace: Container(
+
+                        decoration:  BoxDecoration(
+                          
+                          gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              Theme.of(context).splashColor,
+                              AppColor.splashColorRight,
+                            ],
+                          ),
+                        ),
+                      ),
                     elevation: 0,
                     automaticallyImplyLeading: false,
                     surfaceTintColor: Theme.of(context).colorScheme.surface,
                     backgroundColor: ResponsiveHelper.isDesktop(context) ? Colors.transparent : Theme.of(context).colorScheme.surface,
-                    title: Center(child: Container(
-                      width: Dimensions.webMaxWidth, height: Get.find<LocalizationController>().isLtr ? 60 : 70, color: Theme.of(context).colorScheme.surface,
-                      child: Row(children: [
-                        (splashController.module != null && splashController.configModel!.module == null && splashController.moduleList != null && splashController.moduleList!.length != 1) ? InkWell(
-                          onTap: () {
-                            splashController.removeModule();
-                            Get.find<StoreController>().resetStoreData();
-                          },
-                          child: Image.asset(Images.moduleIcon, height: 25, width: 25, color: Theme.of(context).textTheme.bodyLarge!.color),
-                        ) : const SizedBox(),
-                        SizedBox(width: (splashController.module != null && splashController.configModel!.module == null && splashController.moduleList != null && splashController.moduleList!.length != 1) ? Dimensions.paddingSizeSmall : 0),
-
-                        Expanded(child: InkWell(
-                          onTap: () => Get.find<LocationController>().navigateToLocationScreen('home'),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                              vertical: Dimensions.paddingSizeSmall,
-                              horizontal: ResponsiveHelper.isDesktop(context) ? Dimensions.paddingSizeSmall : 0,
-                            ),
-                            child: GetBuilder<LocationController>(builder: (locationController) {
-                              return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                Text(
-                                  AuthHelper.isLoggedIn() ? AddressHelper.getUserAddressFromSharedPref()!.addressType!.tr : 'your_location'.tr,
-                                  style: robotoMedium.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color, fontSize: Dimensions.fontSizeDefault),
-                                  maxLines: 1, overflow: TextOverflow.ellipsis,
-                                ),
-
-                                Row(children: [
-                                  Flexible(
-                                    child: Text(
-                                      AddressHelper.getUserAddressFromSharedPref()!.address!,
-                                      style: robotoRegular.copyWith(color: Theme.of(context).disabledColor, fontSize: Dimensions.fontSizeSmall),
-                                      maxLines: 1, overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-
-                                  Icon(Icons.expand_more, color: Theme.of(context).disabledColor, size: 18),
-
-                                ]),
-
-                              ]);
-                            }),
+                    title: Center(child: Row(children: [
+                      (splashController.module != null && splashController.configModel!.module == null && splashController.moduleList != null && splashController.moduleList!.length != 1) ? InkWell(
+                        onTap: () {
+                          splashController.removeModule();
+                          Get.find<StoreController>().resetStoreData();
+                        },
+                        child: Image.asset(Images.moduleIcon, height: 25, width: 25, color: Theme.of(context).textTheme.bodyLarge!.color),
+                      ) : const SizedBox(),
+                      SizedBox(width: (splashController.module != null && splashController.configModel!.module == null && splashController.moduleList != null && splashController.moduleList!.length != 1) ? Dimensions.paddingSizeSmall : 0),
+                    
+                      Expanded(child: InkWell(
+                        onTap: () => Get.find<LocationController>().navigateToLocationScreen('home'),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: Dimensions.paddingSizeSmall,
+                            horizontal: ResponsiveHelper.isDesktop(context) ? Dimensions.paddingSizeSmall : 0,
                           ),
-                        )),
-                        InkWell(
-                          child: GetBuilder<NotificationController>(builder: (notificationController) {
-                            return Stack(children: [
-                              Icon(CupertinoIcons.bell, size: 25, color: Theme.of(context).textTheme.bodyLarge!.color),
-                              notificationController.hasNotification ? Positioned(top: 0, right: 0, child: Container(
-                                height: 10, width: 10, decoration: BoxDecoration(
-                                color: Theme.of(context).primaryColor, shape: BoxShape.circle,
-                                border: Border.all(width: 1, color: Theme.of(context).cardColor),
+                          child: GetBuilder<LocationController>(builder: (locationController) {
+                            return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                              Text(
+                                AuthHelper.isLoggedIn() ? AddressHelper.getUserAddressFromSharedPref()!.addressType!.tr : 'your_location'.tr,
+                                style: robotoMedium.copyWith(color: Colors.white, fontSize: Dimensions.fontSizeDefault),
+                                maxLines: 1, overflow: TextOverflow.ellipsis,
                               ),
-                              )) : const SizedBox(),
+                    
+                              Row(children: [
+                                Flexible(
+                                  child: Text(
+                                    AddressHelper.getUserAddressFromSharedPref()!.address!,
+                                    style: robotoRegular.copyWith(color: Theme.of(context).disabledColor, fontSize: Dimensions.fontSizeSmall),
+                                    maxLines: 1, overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                    
+                                Icon(Icons.expand_more, color: Theme.of(context).disabledColor, size: 18),
+                    
+                              ]),
+                    
                             ]);
                           }),
-                          onTap: () => Get.toNamed(RouteHelper.getNotificationRoute()),
                         ),
-                      ]),
-                    )),
+                      )),
+                      InkWell(
+                        child: GetBuilder<NotificationController>(builder: (notificationController) {
+                          return Stack(children: [
+                            const Icon(CupertinoIcons.bell, size: 25, color: Colors.white),
+                            notificationController.hasNotification ? Positioned(top: 0, right: 0, child: Container(
+                              height: 10, width: 10, decoration: BoxDecoration(
+                              color: Theme.of(context).primaryColor, shape: BoxShape.circle,
+                              border: Border.all(width: 1, color: Theme.of(context).cardColor),
+                            ),
+                            )) : const SizedBox(),
+                          ]);
+                        }),
+                        onTap: () => Get.toNamed(RouteHelper.getNotificationRoute()),
+                      ),
+                    ])),
                     actions: const [SizedBox()],
                   ),
-
+            
                   /// Search Button
                   !showMobileModule && !isTaxi ? SliverPersistentHeader(
                     pinned: true,
                     delegate: SliverDelegate(callback: (val){}, child: Center(child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: [
+                            Theme.of(context).splashColor,
+                            AppColor.splashColorRight
+                          ],
+                        ),
+                      ),
                       height: 50, width: Dimensions.webMaxWidth,
-                      color: searchBgShow ? Get.find<ThemeController>().darkTheme ? Theme.of(context).colorScheme.surface : Theme.of(context).cardColor : null,
+                      // color: searchBgShow ? Get.find<ThemeController>().darkTheme ? Theme.of(context).colorScheme.surface : Theme.of(context).cardColor : Colors.black,
                       padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall),
                       child: isTaxi? Container(color: Theme.of(context).primaryColor): InkWell(
                         onTap: () => Get.toNamed(RouteHelper.getSearchRoute()),
@@ -375,23 +398,23 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ))),
                   ) : const SliverToBoxAdapter(),
-
+            
                   SliverToBoxAdapter(
                     child: Center(child: SizedBox(
                       width: Dimensions.webMaxWidth,
                       child: !showMobileModule ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-
+            
                         isGrocery ? const GroceryHomeScreen()
                             : isPharmacy ? const PharmacyHomeScreen()
                             : isFood ? const FoodHomeScreen()
                             : isShop ? const ShopHomeScreen()
                             : isTaxi ? const TaxiHomeScreen()
                             : const SizedBox(),
-
+            
                       ]) : ModuleView(splashController: splashController),
                     )),
                   ),
-
+            
                   !showMobileModule && !isTaxi ? SliverPersistentHeader(
                     key: _headerKey,
                     pinned: true,
@@ -403,7 +426,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: const AllStoreFilterWidget(),
                     ),
                   ) : const SliverToBoxAdapter(),
-
+            
                   SliverToBoxAdapter(child: !showMobileModule && !isTaxi ? Center(child: GetBuilder<StoreController>(builder: (storeController) {
                     return Padding(
                       padding: EdgeInsets.only(bottom: ResponsiveHelper.isDesktop(context) ? 0 : 100),
@@ -425,7 +448,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     );
                   }),) : const SizedBox()),
-
+            
                 ],
               ),
             ),

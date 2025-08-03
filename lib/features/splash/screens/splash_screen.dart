@@ -164,18 +164,30 @@ class SplashScreenState extends State<SplashScreen> {
 
     return Scaffold(
       key: _globalKey,
-      body: GetBuilder<SplashController>(builder: (splashController) {
-        return Center(
-          child: splashController.hasConnection ? Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-                BouncyWidget(
-                  duration: const Duration(milliseconds: 2000), lift: 50, ratio: 0.5, pause: 0.25,
-                  child: SizedBox(width: 200, child: Image.asset(Images.logo, width: 200))),
-            ],
-          ) : NoInternetScreen(child: SplashScreen(body: widget.body)),
-        );
-      }),
+      body: Container(
+        decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            Color(0xFF2788c6), // اللون الأول
+            Color(0xFF2ba3ac), // اللون الثاني
+          ],
+        ),
+      ),
+        child: GetBuilder<SplashController>(builder: (splashController) {
+          return Center(
+            child: splashController.hasConnection ? Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                  BouncyWidget(
+                    duration: const Duration(milliseconds: 2000), lift: 50, ratio: 0.5, pause: 0.25,
+                    child: SizedBox(width: 150, child: Image.asset(Images.splashLogo, width: 150))),
+              ],
+            ) : NoInternetScreen(child: SplashScreen(body: widget.body)),
+          );
+        }),
+      ),
     );
   }
 }

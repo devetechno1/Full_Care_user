@@ -5,6 +5,7 @@ ThemeData dark({Color color = const Color(0xFF1e81b0)}) => ThemeData(
   fontFamily: AppConstants.fontFamily,
   primaryColor: color,
   secondaryHeaderColor: const Color.fromARGB(255, 97, 164, 195),
+  splashColor: const Color(0xFF2788c6),
   disabledColor: const Color(0xffa2a7ad),
   brightness: Brightness.dark,
   hintColor: const Color(0xFFbebebe),

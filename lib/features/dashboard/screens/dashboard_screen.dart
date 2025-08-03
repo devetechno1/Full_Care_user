@@ -37,6 +37,7 @@ import 'package:sixam_mart/features/order/screens/order_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../theme/colors.dart';
 import '../widgets/running_order_view_widget.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -176,6 +177,7 @@ class DashboardScreenState extends State<DashboardScreen> {
               return SafeArea(
                 top: false, bottom: GetPlatform.isAndroid,
                 child: Scaffold(
+                  
                   key: _scaffoldKey,
                   body: ExpandableBottomSheet(
                     background: Stack(children: [
@@ -209,9 +211,17 @@ class DashboardScreenState extends State<DashboardScreen> {
                               return Container(
                                 width: size.width, height: GetPlatform.isIOS ? 80 : 65,
                                 decoration: BoxDecoration(
-                                  color: Theme.of(context).cardColor,
-                                  borderRadius: const BorderRadius.vertical(top: Radius.circular(Dimensions.radiusLarge)),
-                                    boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 5, spreadRadius: 1)],
+                                  gradient:  LinearGradient(
+                                      begin: Alignment.centerLeft,
+                                      end: Alignment.centerRight,
+                                      colors: [
+                                          Theme.of(context).splashColor,
+                                         AppColor.splashColorRight,
+                                                  ],
+                                                ),
+                                  // color: Theme.of(context).cardColor,
+                                  borderRadius:const  BorderRadius.vertical(top: Radius.circular(Dimensions.radiusLarge)),
+                                    // boxShadow: const  [BoxShadow(color: Colors.black12, blurRadius: 5, spreadRadius: 1)],
                                 ),
                                 child: Stack(children: [
 
