@@ -123,7 +123,7 @@ class CategoryItemScreenState extends State<CategoryItemScreen> with TickerProvi
                 autofocus: true,
                 textInputAction: TextInputAction.search,
                 decoration: InputDecoration(
-                  hintText: 'Search...',
+                  hintText: 'search'.tr,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
                     borderSide: BorderSide(color: Theme.of(context).disabledColor),
