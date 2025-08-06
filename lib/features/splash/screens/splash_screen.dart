@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../common/widgets/bouncy_widget.dart';
+import '../../../theme/colors.dart';
 
 class SplashScreen extends StatefulWidget {
   final NotificationBodyModel? body;
@@ -170,8 +171,8 @@ class SplashScreenState extends State<SplashScreen> {
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
           colors: [
-            Color(0xFF2788c6), // اللون الأول
-            Color(0xFF2ba3ac), // اللون الثاني
+          AppColor.splashColorLeft,
+          AppColor.splashColorRight,
           ],
         ),
       ),
