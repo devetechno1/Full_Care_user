@@ -30,26 +30,26 @@ class VegFilterWidget extends StatelessWidget {
         ),
       ])));
     }
-
-    return (Get.find<SplashController>().configModel!.moduleConfig!.module!.vegNonVeg! && Get.find<SplashController>().configModel!.toggleVegNonVeg!) ? Padding(
-      padding: fromAppBar ? EdgeInsets.zero : EdgeInsets.only(left: ltr ? Dimensions.paddingSizeSmall : 0, right: ltr ? 0 : Dimensions.paddingSizeSmall),
-      child: PopupMenuButton<dynamic>(
-        offset: const Offset(-20, 20),
-        itemBuilder: (BuildContext context) => entryList,
-        onSelected: (dynamic value) => onSelected!(Get.find<ItemController>().itemTypeList[value]),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
-        ),
-        child: Container(
-          decoration: fromAppBar ? const BoxDecoration() : BoxDecoration(
-              borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-              color: Theme.of(context).cardColor,
-              border: Border.all(color: Theme.of(context).primaryColor, width: 1)
-          ),
-          padding: const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
-          child: const Icon(Icons.filter_list, size: 24),
-        ),
-      ),
-    ) : const SizedBox();
+return const SizedBox();
+    // return (Get.find<SplashController>().configModel!.moduleConfig!.module!.vegNonVeg! && Get.find<SplashController>().configModel!.toggleVegNonVeg!) ? Padding(
+    //   padding: fromAppBar ? EdgeInsets.zero : EdgeInsets.only(left: ltr ? Dimensions.paddingSizeSmall : 0, right: ltr ? 0 : Dimensions.paddingSizeSmall),
+    //   child: PopupMenuButton<dynamic>(
+    //     offset: const Offset(-20, 20),
+    //     itemBuilder: (BuildContext context) => entryList,
+    //     onSelected: (dynamic value) => onSelected!(Get.find<ItemController>().itemTypeList[value]),
+    //     shape: const RoundedRectangleBorder(
+    //       borderRadius: BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
+    //     ),
+    //     child: Container(
+    //       decoration: fromAppBar ? const BoxDecoration() : BoxDecoration(
+    //           borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
+    //           color: Theme.of(context).cardColor,
+    //           border: Border.all(color: Theme.of(context).primaryColor, width: 1)
+    //       ),
+    //       padding: const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
+    //       child: const Icon(Icons.filter_list, size: 24),
+    //     ),
+    //   ),
+    // ) : const SizedBox();
   }
 }
