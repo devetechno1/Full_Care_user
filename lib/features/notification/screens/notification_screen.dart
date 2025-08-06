@@ -149,7 +149,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                     child: CustomAssetImageWidget(
                                       notificationController.notificationList![index].data!.type == 'push_notification' ? Images.pushNotificationIcon
                                       : notificationController.notificationList![index].data!.type == 'order_status' ? Images.orderConfirmIcon : Images.referEarnIcon,
-                                      height: 30, width: 30, fit: BoxFit.cover,
+                                      height: 40, width: 30, fit: BoxFit.cover,
                                     ),
                                   ),
                                   const SizedBox(width: Dimensions.paddingSizeSmall),
