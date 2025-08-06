@@ -190,10 +190,10 @@ class OrderTrackingScreenState extends State<OrderTrackingScreen> {
   void setMarker(Store? store, DeliveryMan? deliveryMan, AddressModel? addressModel, bool takeAway, bool parcel, bool isRestaurant, {AddressModel? currentAddress, bool fromCurrentLocation = false}) async {
     try {
 
-      BitmapDescriptor restaurantImageData = await MarkerHelper.convertAssetToBitmapDescriptor(
-        width: (isRestaurant || parcel) ? 30 : isRestaurant ? 30 : 50,
-        imagePath: parcel ? Images.userMarker : isRestaurant ? Images.restaurantMarker : Images.markerStore,
-      );
+      // BitmapDescriptor restaurantImageData = await MarkerHelper.convertAssetToBitmapDescriptor(
+      //   width: (isRestaurant || parcel) ? 30 : isRestaurant ? 30 : 50,
+      //   imagePath: Images.userMarker ,
+      // );
 
       BitmapDescriptor deliveryBoyImageData = await MarkerHelper.convertAssetToBitmapDescriptor(
         width: 30, imagePath: Images.deliveryManMarker,
@@ -274,15 +274,15 @@ class OrderTrackingScreenState extends State<OrderTrackingScreen> {
       }
 
       ///store for normal order , but receiver for parcel order
-      store != null ? _markers.add(Marker(
-        markerId: const MarkerId('store'),
-        position: LatLng(double.parse(store.latitude!), double.parse(store.longitude!)),
-        infoWindow: InfoWindow(
-          title: parcel ? 'receiver'.tr : Get.find<SplashController>().configModel!.moduleConfig!.module!.showRestaurantText! ? 'store'.tr : 'store'.tr,
-          snippet: store.address,
-        ),
-        icon: restaurantImageData,
-      )) : const SizedBox();
+      // store != null ? _markers.add(Marker(
+      //   markerId: const MarkerId('store'),
+      //   position: LatLng(double.parse(store.latitude!), double.parse(store.longitude!)),
+      //   infoWindow: InfoWindow(
+      //     title: parcel ? 'receiver'.tr : Get.find<SplashController>().configModel!.moduleConfig!.module!.showRestaurantText! ? 'store'.tr : 'store'.tr,
+      //     snippet: store.address,
+      //   ),
+      //   icon:restaurantImageData ,
+      // )) : const SizedBox();
 
       deliveryMan != null ? _markers.add(Marker(
         markerId: const MarkerId('delivery_boy'),
