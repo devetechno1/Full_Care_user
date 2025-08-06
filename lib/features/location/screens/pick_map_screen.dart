@@ -197,7 +197,7 @@ class _PickMapScreenState extends State<PickMapScreen> {
               style: Get.isDarkMode ? Get.find<ThemeController>().darkMap : Get.find<ThemeController>().lightMap,
             ),
 
-            Center(child: !locationController.loading ? Image.asset(Images.pickMarker, height: 50, width: 50)
+            Center(child: !locationController.loading ? Image.asset(Images.picker, height: 50, width: 50)
                 : const CircularProgressIndicator()),
 
             Positioned(
