@@ -232,9 +232,9 @@ class Images {
   static const String highlightBg = 'assets/image/highlight_bg.svg';
   static const String highlightDarkBg = 'assets/image/highlight_dark_bg.svg';
   static const String languageBg = 'assets/image/language_bg.svg';
-  static const String orderConfirmIcon = 'assets/image/order_confirm_icon.svg';
+  static const String orderConfirmIcon = 'assets/image/order_confirm_icon.png';
   static const String pushNotificationIcon = 'assets/image/push_notification.svg';
-  static const String referEarnIcon = 'assets/image/refer_earn_icon.svg';
+  static const String referEarnIcon = 'assets/image/refer_earn_icon.jpg';
   static const String otpVerification = 'assets/image/otp_verification.svg';
   static const String emailVerifiedIcon = 'assets/image/email_verification.svg';
   static const String landingBg = 'assets/image/landing_bg.svg';
