@@ -80,7 +80,7 @@ class AllStoreFilterWidget extends StatelessWidget {
           padding: EdgeInsets.zero,
 
           children: [
-            ResponsiveHelper.isDesktop(context) ? const SizedBox() : FilterView(storeController: storeController),
+            (ResponsiveHelper.isDesktop(context)) ? const SizedBox() : FilterView(storeController: storeController),
             const SizedBox(width: Dimensions.paddingSizeSmall),
 
             StoreFilterButtonWidget(
