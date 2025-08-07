@@ -179,6 +179,7 @@ class DateConverter {
   static String containTAndZToUTCFormat(String time) {
     var newTime = '${time.substring(0,10)} ${time.substring(11,23)}';
     return DateFormat('dd MMM, yyyy').format(DateFormat('yyyy-MM-dd HH:mm:ss').parse(newTime));
+    
 
     // return DateFormat('${_timeFormatter()} | d-MMM-yyyy ').format(dateTime.toLocal());
   }

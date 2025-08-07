@@ -110,15 +110,16 @@ class OrderInfoWidget extends StatelessWidget {
               ]) : const SizedBox(),
 
               Get.find<SplashController>().configModel!.orderDeliveryVerification! ? const Divider(height: Dimensions.paddingSizeLarge) : const SizedBox(),
-              Get.find<SplashController>().configModel!.orderDeliveryVerification! ? Row(children: [
-                Text('${'delivery_verification_code'.tr}:', style: robotoRegular),
+              Get.find<SplashController>().configModel!.orderDeliveryVerification! && (order.orderStatus == 'picked_up' || order.orderStatus == 'delivered') ? Row(children: [
+                Text('${'verification_code'.tr}:', style: robotoRegular),
                 const Expanded(child: SizedBox()),
                 Text(order.otp!, style: robotoMedium),
               ]) : const SizedBox(),
               Divider(height: Dimensions.paddingSizeLarge, color: Theme.of(context).disabledColor.withValues(alpha: 0.30)),
 
               Row(children: [
-                Text(order.orderType!.tr, style: robotoMedium),
+                Text('payment_method'.tr, style: robotoRegular),
+               // Text(order.orderType!.tr, style: robotoMedium),
                 const Expanded(child: SizedBox()),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall, vertical: Dimensions.paddingSizeExtraSmall),
@@ -138,13 +139,13 @@ class OrderInfoWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeExtraSmall),
                 child: Row(children: [
-                  Text('${parcel ? 'charge_pay_by'.tr : 'item'.tr}:', style: robotoRegular),
-                  const SizedBox(width: Dimensions.paddingSizeExtraSmall),
+                  // Text('${parcel ? 'charge_pay_by'.tr : 'item'.tr}:', style: robotoRegular),
+                  // const SizedBox(width: Dimensions.paddingSizeExtraSmall),
 
-                  Text(
-                    parcel ? order.chargePayer!.tr : orderController.orderDetails!.length.toString(),
-                    style: robotoMedium.copyWith(color: Theme.of(context).primaryColor),
-                  ),
+                  // Text(
+                  //   parcel ? order.chargePayer!.tr : orderController.orderDetails!.length.toString(),
+                  //   style: robotoMedium.copyWith(color: Theme.of(context).primaryColor),
+                  // ),
                   const Expanded(child: SizedBox()),
 
                   Container(height: 7, width: 7, decoration: BoxDecoration(

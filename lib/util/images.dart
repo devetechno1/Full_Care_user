@@ -133,7 +133,7 @@ class Images {
   static const String noAddress = 'assets/image/no_address.png';
   static const String congratulationDark = 'assets/image/congratulation_dark.gif';
   static const String congratulationLight = 'assets/image/congratulation_light.gif';
-  static const String ongoingAnimation = 'assets/image/ongoing_animation.gif';
+  static const String ongoingAnimation = 'assets/image/ongoing_animation.png';
   static const String guestIcon = 'assets/image/guest_icon.png';
   static const String guestIconLight = 'assets/image/guest_icon_light.png';
   static const String storeMarker = 'assets/image/store_marker.png';

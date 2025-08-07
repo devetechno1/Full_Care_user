@@ -23,6 +23,7 @@ import 'package:sixam_mart/common/widgets/confirmation_dialog.dart';
 import 'package:sixam_mart/common/widgets/custom_image.dart';
 import 'package:sixam_mart/features/menu/widgets/portion_widget.dart';
 
+import '../../../theme/colors.dart';
 import '../../../util/app_constants.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -44,7 +45,16 @@ class _MenuScreenState extends State<MenuScreen> {
         return Column(children: [
 
           Container(
-            decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+             decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+          AppColor.splashColorLeft,
+          AppColor.splashColorRight,
+          ],
+        ),
+      ),
             child: Padding(
               padding: const EdgeInsets.only(
                 left: Dimensions.paddingSizeExtremeLarge, right: Dimensions.paddingSizeExtremeLarge,
@@ -91,6 +101,7 @@ class _MenuScreenState extends State<MenuScreen> {
                         ),
                       ),
                     ) : isLoggedIn ? Text(
+                      textDirection: TextDirection.ltr,
                       profileController.userInfoModel != null ? DateConverter.containTAndZToUTCFormat(profileController.userInfoModel!.createdAt!) : '',
                       style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).cardColor),
                     ) : InkWell(
