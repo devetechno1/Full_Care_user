@@ -71,7 +71,7 @@ class AuthController extends GetxController implements GetxService {
   var countryDialCode = "+20";
 
   void pickImage() async {
-    final XFile? temp = await pickImageFromGallery();
+    final XFile? temp = await pickImageFromCamera();
     if (temp != null) _pickedFile = temp;
     update();
   }

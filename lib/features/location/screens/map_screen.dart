@@ -192,7 +192,7 @@ class MapScreenState extends State<MapScreen> {
 
     BitmapDescriptor markerIcon = await MarkerHelper.convertAssetToBitmapDescriptor(
       width: widget.isFood ? 50 : 50,
-      imagePath: widget.fromStore ? widget.isFood ? Images.restaurantMarker : Images.markerStore : Images.locationMarker,
+      imagePath: widget.fromStore ? widget.isFood ? Images.markerStore : Images.markerStore : Images.locationMarker,
     );
 
     BitmapDescriptor myLocationMarkerIcon = await MarkerHelper.convertAssetToBitmapDescriptor(

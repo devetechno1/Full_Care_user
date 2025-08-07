@@ -126,7 +126,7 @@ class ProfileController extends GetxController implements GetxService {
   }
 
   void pickImage() async {
-    _pickedFile = await pickImageFromGallery();
+    _pickedFile = await pickImageFromCamera();
     update();
   }
 
