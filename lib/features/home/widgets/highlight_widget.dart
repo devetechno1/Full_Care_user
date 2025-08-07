@@ -40,11 +40,12 @@ class _HighlightWidgetState extends State<HighlightWidget> {
         child: Stack(
           children: [
 
-            CustomAssetImageWidget(
-              Get.isDarkMode ? Images.highlightDarkBg : Images.highlightBg, width: context.width,
-              fit: BoxFit.cover,
+            Positioned.fill(
+              child: CustomAssetImageWidget(
+                Get.isDarkMode ? Images.highlightDarkBg : Images.highlightBg,
+                fit: BoxFit.cover,
+              ),
             ),
-
             Column(children: [
 
               Padding(
