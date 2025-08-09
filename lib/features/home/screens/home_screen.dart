@@ -323,12 +323,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Flexible(
                                   child: Text(
                                     AddressHelper.getUserAddressFromSharedPref()!.address!,
-                                    style: robotoRegular.copyWith(color: Theme.of(context).disabledColor, fontSize: Dimensions.fontSizeSmall),
+                                    style: robotoRegular.copyWith(color: Colors.white, fontSize: Dimensions.fontSizeSmall),
                                     maxLines: 1, overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
                     
-                                Icon(Icons.expand_more, color: Theme.of(context).disabledColor, size: 18),
+                                Icon(Icons.expand_more, color: Colors.white, size: 18),
                     
                               ]),
                     
@@ -339,11 +339,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       InkWell(
                         child: GetBuilder<NotificationController>(builder: (notificationController) {
                           return Stack(children: [
-                            const Icon(CupertinoIcons.bell, size: 25, color: Colors.white),
-                            notificationController.hasNotification ? Positioned(top: 0, right: 0, child: Container(
+                             Icon(CupertinoIcons.bell, size: 25, color: notificationController.hasNotification
+                                      ? Colors.red
+                                      : Colors.white,),
+                            notificationController.hasNotification ? 
+                            Positioned(top: 0, right: 0, child: Container(
                               height: 10, width: 10, decoration: BoxDecoration(
-                              color: Theme.of(context).primaryColor, shape: BoxShape.circle,
-                              border: Border.all(width: 1, color: Theme.of(context).cardColor),
+                              color: Colors.red, shape: BoxShape.circle,
+                              border: Border.all(width: 1, color: Colors.red),
                             ),
                             )) : const SizedBox(),
                           ]);

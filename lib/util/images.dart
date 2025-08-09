@@ -13,8 +13,8 @@ class Images {
   static const String locationMarker = 'assets/image/location_marker.png';
   static const String mail = 'assets/image/mail.png';
   static const String map = 'assets/image/map.png';
-  static const String onboard_1 = 'assets/image/onboard_1.png';
-  static const String onboard_2 = 'assets/image/onboard_2.png';
+  static const String onboard_1 = 'assets/image/onboard_1.jpg';
+  static const String onboard_2 = 'assets/image/onboard_2.jpg';
   static const String onboard_3 = 'assets/image/onboard_3.png';
   static const String restaurantMarker = 'assets/image/restaurant_marker.png';
   static const String deliveryManMarker = 'assets/image/delivery_man_marker.png';
@@ -35,7 +35,7 @@ class Images {
   static const String guest = 'assets/image/guest.png';
   static const String profileBg = 'assets/image/profile_bg.png';
   static const String warning = 'assets/image/warning.png';
-  static const String supportImage = 'assets/image/support_image.png';
+  static const String supportImage = 'assets/image/support_image.jpg';
   static const String cashOnDelivery = 'assets/image/cash_on_delivery.png';
   static const String digitalPayment = 'assets/image/digital_payment.png';
   static const String route = 'assets/image/route.png';

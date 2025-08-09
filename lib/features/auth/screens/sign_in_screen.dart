@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import '../../../theme/colors.dart';
+
 class SignInScreen extends StatefulWidget {
   final bool exitFromApp;
   final bool backFromThis;
@@ -59,18 +61,18 @@ class SignInScreenState extends State<SignInScreen> {
       },
       child: Scaffold(
         backgroundColor: ResponsiveHelper.isDesktop(context) ? Colors.transparent : Theme.of(context).cardColor,
-        appBar: (ResponsiveHelper.isDesktop(context) ? null : !widget.exitFromApp ? AppBar(leading: IconButton(
-            onPressed: () {
-              if(widget.fromNotification || widget.fromResetPassword) {
-                Navigator.pushNamed(context, RouteHelper.getInitialRoute());
-              } else {
-                Get.back();
-              }
-            },
-            icon: Icon(Icons.arrow_back_ios_rounded, color: Theme.of(context).textTheme.bodyLarge!.color),
-          ),
-          elevation: 0, backgroundColor: Theme.of(context).cardColor, actions: const [SizedBox()],
-        ) : null),
+        // appBar: (ResponsiveHelper.isDesktop(context) ? null : !widget.exitFromApp ? AppBar(leading: IconButton(
+        //     onPressed: () {
+        //       if(widget.fromNotification || widget.fromResetPassword) {
+        //         Navigator.pushNamed(context, RouteHelper.getInitialRoute());
+        //       } else {
+        //         Get.back();
+        //       }
+        //     },
+        //     icon: Icon(Icons.arrow_back_ios_rounded, color: Theme.of(context).textTheme.bodyLarge!.color),
+        //   ),
+        //   elevation: 0, backgroundColor: Theme.of(context).cardColor, actions: const [SizedBox()],
+        // ) : null),
         endDrawer: const MenuDrawer(),endDrawerEnableOpenDragGesture: false,
 
         body: SafeArea(
@@ -95,11 +97,25 @@ class SignInScreenState extends State<SignInScreen> {
                     ),
                   ) : const SizedBox(),
 
-                  Image.asset(Images.loginLogo, width: double.infinity,fit: BoxFit.contain),
-                  const SizedBox(height: Dimensions.paddingSizeExtremeLarge),
-
+                  Container(                    
+                    height: 350,
+                     decoration: const BoxDecoration(
+                       borderRadius: BorderRadius.all(
+                         Radius.circular(Dimensions.radiusExtraLarge),                     
+                       ),
+                     gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                    AppColor.splashColorLeft,
+                    AppColor.splashColorRight,
+                    ],
+                  ),
+                ),
+                    child: Image.asset(Images.loginLogo, width: double.infinity,fit: BoxFit.contain)),
+                  const SizedBox(height: Dimensions.paddingSizeDefault),
                   SignInView(exitFromApp: widget.exitFromApp, backFromThis: widget.backFromThis, fromResetPassword: widget.fromResetPassword, isOtpViewEnable: (v){},),
-                  const SizedBox(height: Dimensions.paddingSizeExtraOverOverLarge),
+                  const SizedBox(height: 150),
                 ]),
               ),
             ),
