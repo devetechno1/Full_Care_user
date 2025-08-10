@@ -94,7 +94,7 @@ class SignInScreenState extends State<SignInScreen> {
                     ],
                   ),
                 ),
-                    child: Image.asset(Images.loginLogo, width: double.infinity,fit: BoxFit.contain)),
+                    child: Image.asset(Images.loginLogo, width: context.width > 700 ? 500 : double.infinity,fit: BoxFit.contain)),
                 Container(
                   width: context.width > 700 ? 500 : context.width,
                   padding: context.width > 700 ? const EdgeInsets.all(50) : const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraLarge),
