@@ -74,34 +74,16 @@ class SignInScreenState extends State<SignInScreen> {
         //   elevation: 0, backgroundColor: Theme.of(context).cardColor, actions: const [SizedBox()],
         // ) : null),
         endDrawer: const MenuDrawer(),endDrawerEnableOpenDragGesture: false,
-
-        body: SafeArea(
-          
-          child: Align(
-            alignment: Alignment.center,
-            child: Container(
-              width: context.width > 700 ? 500 : context.width,
-              padding: context.width > 700 ? const EdgeInsets.all(50) : const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraLarge),
-              margin: context.width > 700 ? const EdgeInsets.all(50) : EdgeInsets.zero,
-              decoration: context.width > 700 ? BoxDecoration(
-                color: Theme.of(context).cardColor, borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-                boxShadow: ResponsiveHelper.isDesktop(context) ? null : const [BoxShadow(color: Colors.black12, blurRadius: 5, spreadRadius: 1)],
-              ) : null,
-              child: SingleChildScrollView(
-                child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-                  ResponsiveHelper.isDesktop(context) ? Align(
-                    alignment: Alignment.topRight,
-                    child: IconButton(
-                      onPressed: () => Get.back(),
-                      icon: const Icon(Icons.clear),
-                    ),
-                  ) : const SizedBox(),
-
-                  Container(                    
+        body: Align(
+          alignment: Alignment.center,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(                    
                     height: 350,
                      decoration: const BoxDecoration(
-                       borderRadius: BorderRadius.all(
-                         Radius.circular(Dimensions.radiusExtraLarge),                     
+                       borderRadius: BorderRadius.vertical(
+                        bottom: Radius.circular(40),              
                        ),
                      gradient: LinearGradient(
                     begin: Alignment.centerLeft,
@@ -113,11 +95,28 @@ class SignInScreenState extends State<SignInScreen> {
                   ),
                 ),
                     child: Image.asset(Images.loginLogo, width: double.infinity,fit: BoxFit.contain)),
-                  const SizedBox(height: Dimensions.paddingSizeDefault),
-                  SignInView(exitFromApp: widget.exitFromApp, backFromThis: widget.backFromThis, fromResetPassword: widget.fromResetPassword, isOtpViewEnable: (v){},),
-                  const SizedBox(height: 150),
-                ]),
-              ),
+                Container(
+                  width: context.width > 700 ? 500 : context.width,
+                  padding: context.width > 700 ? const EdgeInsets.all(50) : const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraLarge),
+                  margin: context.width > 700 ? const EdgeInsets.all(50) : EdgeInsets.zero,
+                  decoration: context.width > 700 ? BoxDecoration(
+                    color: Theme.of(context).cardColor, borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
+                    boxShadow: ResponsiveHelper.isDesktop(context) ? null : const [BoxShadow(color: Colors.black12, blurRadius: 5, spreadRadius: 1)],
+                  ) : null,
+                  child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+                    ResponsiveHelper.isDesktop(context) ? Align(
+                      alignment: Alignment.topRight,
+                      child: IconButton(
+                        onPressed: () => Get.back(),
+                        icon: const Icon(Icons.clear),
+                      ),
+                    ) : const SizedBox(),                  
+                    const SizedBox(height: Dimensions.paddingSizeDefault),
+                    SignInView(exitFromApp: widget.exitFromApp, backFromThis: widget.backFromThis, fromResetPassword: widget.fromResetPassword, isOtpViewEnable: (v){},),
+                    const SizedBox(height: 150),
+                  ]),
+                ),
+              ],
             ),
           ),
         ),
