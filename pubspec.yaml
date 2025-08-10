@@ -73,6 +73,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   app_links: ^6.4.0
+  device_preview: ^1.2.0
 
 
 dependency_overrides:

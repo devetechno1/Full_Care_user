@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:ui';
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -95,9 +97,16 @@ Future<void> main() async {
     );
   }
 
-  runApp(MyApp(languages: languages, body: body));
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => MyApp(
+        languages: languages,
+        body: body,
+      ),
+    ),
+  );
 }
-
 class MyApp extends StatefulWidget {
   final Map<String, Map<String, String>>? languages;
   final NotificationBodyModel? body;
@@ -150,7 +159,7 @@ class _MyAppState extends State<MyApp> {
     return GetBuilder<ThemeController>(builder: (themeController) {
       return GetBuilder<LocalizationController>(builder: (localizeController) {
         return GetBuilder<SplashController>(builder: (splashController) {
-          return (GetPlatform.isWeb && splashController.configModel == null) ? const SizedBox() : GetMaterialApp(
+          return (GetPlatform.isWeb && splashController.configModel == null) ? const SizedBox() : GetMaterialApp(          
             title: AppConstants.appName,
             debugShowCheckedModeBanner: false,
             navigatorKey: Get.key,
@@ -171,10 +180,11 @@ class _MyAppState extends State<MyApp> {
               GlobalCupertinoLocalizations.delegate,
             ],
             builder: (BuildContext context, widget) {
+              widget = DevicePreview.appBuilder(context, widget);
               return MediaQuery(data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1)), child: Material(
                 child: Stack(children: [
 
-                  widget!,
+                  widget,
 
                   GetBuilder<SplashController>(builder: (splashController){
                     if(!splashController.savedCookiesData && !splashController.getAcceptCookiesStatus(splashController.configModel != null ? splashController.configModel!.cookiesText! : '')){
