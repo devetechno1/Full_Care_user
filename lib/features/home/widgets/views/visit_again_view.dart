@@ -52,6 +52,7 @@ class _VisitAgainViewState extends State<VisitAgainView> {
                     aspectRatio: 2.0,
                     enlargeCenterPage: true,
                     disableCenter: true,
+                    viewportFraction: 0.6
                   ),
                   itemBuilder: (BuildContext context, int index, int realIndex) {
                   return VisitAgainCard(store: stores[index], fromFood: widget.fromFood!);
