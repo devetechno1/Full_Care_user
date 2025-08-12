@@ -89,12 +89,20 @@ class SplashController extends GetxController implements GetxService {
     _moduleIndex = 0;
     Response response;
     if(source == DataSourceEnum.local && !fromDemoReset) {
-      response = await splashServiceInterface.getConfigData(source: DataSourceEnum.local);
+      final List temp = await Future.wait([
+        splashServiceInterface.getConfigData(source: DataSourceEnum.local),
+        Future.delayed(const Duration(seconds: 3)),
+      ]);
+      response = temp.first ;
       _handleConfigResponse(response, loadModuleData, loadLandingData, fromMainFunction, fromDemoReset, notificationBody);
       getConfigData(loadModuleData: loadModuleData, loadLandingData: loadLandingData, source: DataSourceEnum.client);
 
     } else {
-      response = await splashServiceInterface.getConfigData(source: DataSourceEnum.client);
+      final List temp = await Future.wait([
+        splashServiceInterface.getConfigData(source: DataSourceEnum.client),
+        Future.delayed(const Duration(seconds: 3)),
+      ]);
+      response = temp.first ;
       _handleConfigResponse(response, loadModuleData, loadLandingData, fromMainFunction, fromDemoReset, notificationBody);
     }
 
