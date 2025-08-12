@@ -256,7 +256,7 @@ class FoodCategoryView extends StatelessWidget {
     return Stack(children: [
       Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         SizedBox(
-          height: 100,
+          height: 120,
           child: categoryController.categoryList != null ? ListView.builder(
             controller: scrollController,
             physics: const BouncingScrollPhysics(),
@@ -322,7 +322,7 @@ class FoodCategoryView extends StatelessWidget {
 
                       Expanded(child: Text(
                         (index == 9 && categoryController.categoryList!.length > 10) ?  'see_all'.tr : categoryController.categoryList![index].name ?? '',
-                        style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall, color: (index == 9 && categoryController.categoryList!.length > 10) ? Theme.of(context).primaryColor : Theme.of(context).textTheme.bodyMedium!.color),
+                        style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color: (index == 9 && categoryController.categoryList!.length > 10) ? Theme.of(context).primaryColor : Theme.of(context).textTheme.bodyMedium!.color),
                         maxLines: 2, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center,
                       )),
                     ]),

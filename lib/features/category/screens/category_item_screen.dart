@@ -16,6 +16,8 @@ import 'package:sixam_mart/common/widgets/web_menu_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../theme/colors.dart';
+
 class CategoryItemScreen extends StatefulWidget {
   final String? categoryID;
   final String categoryName;
@@ -115,6 +117,18 @@ class CategoryItemScreenState extends State<CategoryItemScreen> with TickerProvi
           appBar: (ResponsiveHelper.isDesktop(context) ? const WebMenuBar() : AppBar(
             backgroundColor: Theme.of(context).cardColor,
             surfaceTintColor: Theme.of(context).cardColor,
+            flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                   AppColor.splashColorLeft,
+                   AppColor.splashColorRight, 
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
             shadowColor: Theme.of(context).disabledColor.withValues(alpha: 0.5),
             elevation: 2,
             title: catController.isSearching ? SizedBox(
@@ -150,12 +164,12 @@ class CategoryItemScreenState extends State<CategoryItemScreen> with TickerProvi
                 }
               ),
             ) : Text(widget.categoryName, style: robotoRegular.copyWith(
-              fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).textTheme.bodyLarge!.color,
+              fontSize: Dimensions.fontSizeLarge, color: Colors.white,
             )),
             centerTitle: false,
             leading: IconButton(
               icon: const Icon(Icons.arrow_back_ios),
-              color: Theme.of(context).textTheme.bodyLarge!.color,
+              color: Colors.white,
               onPressed: () {
                 if(catController.isSearching) {
                   catController.toggleSearch();
@@ -170,13 +184,13 @@ class CategoryItemScreenState extends State<CategoryItemScreen> with TickerProvi
                 onPressed: () => catController.toggleSearch(),
                 icon: Icon(
                   catController.isSearching ? Icons.close_sharp : Icons.search,
-                  color: Theme.of(context).textTheme.bodyLarge!.color,
+                  color: Colors.white,
                 ),
               ) : const SizedBox(),
 
               IconButton(
                 onPressed: () => Get.toNamed(RouteHelper.getCartRoute()),
-                icon: CartWidget(color: Theme.of(context).textTheme.bodyLarge!.color, size: 25),
+                icon: CartWidget(color: Colors.white, size: 25),
               ),
 
               VegFilterWidget(type: catController.type, fromAppBar: true, onSelected: (String type) {

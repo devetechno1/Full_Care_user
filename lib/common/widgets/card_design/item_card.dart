@@ -124,9 +124,9 @@ class ItemCard extends StatelessWidget {
                         child: Stack(clipBehavior: Clip.none, children: [
 
                           Align(
-                            alignment: isPopularItem ? Alignment.center : Alignment.centerLeft,
+                            alignment: isPopularItem ? Alignment.center : Alignment.center,
                             child: Column(
-                                crossAxisAlignment: isPopularItem ? CrossAxisAlignment.center : CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+                                crossAxisAlignment: isPopularItem ? CrossAxisAlignment.center : CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
                               (isFood || isShop) ? Text(item.storeName ?? '', style: robotoRegular.copyWith(color: Theme.of(context).disabledColor))
                                   : Text(item.name ?? '', style: robotoBold, maxLines: 1, overflow: TextOverflow.ellipsis),
 
@@ -135,7 +135,7 @@ class ItemCard extends StatelessWidget {
                                   item.name ?? '',
                                   style: robotoBold, maxLines: 1, overflow: TextOverflow.ellipsis,
                                 ),
-                              ) : item.ratingCount! > 0 ? Row(mainAxisAlignment: isPopularItem ? MainAxisAlignment.center : MainAxisAlignment.start, children: [
+                              ) : item.ratingCount! > 0 ? Row(mainAxisAlignment: isPopularItem ? MainAxisAlignment.center : MainAxisAlignment.center, children: [
                                 Icon(Icons.star, size: 14, color: Theme.of(context).primaryColor),
                                 const SizedBox(width: Dimensions.paddingSizeExtraSmall),
 
@@ -146,7 +146,7 @@ class ItemCard extends StatelessWidget {
                               ]) : const SizedBox(),
 
                               // showUnitOrRattings(context);
-                              (isFood || isShop) ? item.ratingCount! > 0 ? Row(mainAxisAlignment: isPopularItem ? MainAxisAlignment.center : MainAxisAlignment.start, children: [
+                              (isFood || isShop) ? item.ratingCount! > 0 ? Row(mainAxisAlignment: isPopularItem ? MainAxisAlignment.center : MainAxisAlignment.center, children: [
                                 Icon(Icons.star, size: 14, color: Theme.of(context).primaryColor),
                                 const SizedBox(width: Dimensions.paddingSizeExtraSmall),
 

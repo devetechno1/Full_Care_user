@@ -31,7 +31,8 @@ class VisitAgainCard extends StatelessWidget {
       builder: (hovered) {
         return Stack(children: [
           Container(
-            margin: const EdgeInsets.only(top: Dimensions.paddingSizeLarge, bottom: Dimensions.paddingSizeSmall),
+            alignment: Alignment.center,
+            margin: const EdgeInsets.only(top: Dimensions.paddingSizeLarge, bottom: Dimensions.paddingSizeExtraOverLarge),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
               color: Theme.of(context).cardColor,
@@ -48,37 +49,10 @@ class VisitAgainCard extends StatelessWidget {
               radius: Dimensions.radiusDefault,
               padding: const EdgeInsets.only(top: 40, bottom: Dimensions.paddingSizeSmall),
               child: Column(crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-
                 Flexible(child: Text(store.name ?? '', style: robotoBold, maxLines: 1, overflow: TextOverflow.ellipsis)),
-
-                if(store.ratingCount! > 0)
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Icon(Icons.star, size: 15, color: Theme.of(context).primaryColor),
-                  const SizedBox(width: Dimensions.paddingSizeExtraSmall),
-
-                  Text(store.avgRating!.toStringAsFixed(1), style: robotoRegular),
-                  const SizedBox(width: Dimensions.paddingSizeExtraSmall),
-
-                  Text("(${store.ratingCount})", style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor)),
-                ]),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall),
-                  child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Icon(Icons.storefront_outlined, size: 20, color: Theme.of(context).disabledColor),
-                    const SizedBox(width: Dimensions.paddingSizeExtraSmall),
-
-                    Flexible(
-                      child: Text(
-                        store.address ?? '',
-                        overflow: TextOverflow.ellipsis, maxLines: 1,
-                        style: robotoRegular.copyWith(color: Theme.of(context).disabledColor),
-                      ),
-                    ),
-                  ]),
-                ),
-
                 store.items != null ? Container(
+                  margin: const EdgeInsets.only(bottom: 20),
+
                   alignment: Alignment.center,
                   height: 25, width: 200,
                   child: ListView.builder(
@@ -147,7 +121,11 @@ class VisitAgainCard extends StatelessWidget {
               ),
             ),
           ),
-
+        Positioned(
+          top: 50,
+            left: Get.find<LocalizationController>().isLtr ? null : 10,
+            right: Get.find<LocalizationController>().isLtr ? 10 : null,
+          child: Icon(Icons.storefront_outlined, size: 20, color: Theme.of(context).disabledColor),),
           Positioned(
             top: 30,
             left: Get.find<LocalizationController>().isLtr ? null : 10,
@@ -167,8 +145,29 @@ class VisitAgainCard extends StatelessWidget {
                   isWished ? Icons.favorite : Icons.favorite_border,  size: 20,
                   color: Theme.of(context).primaryColor,
                 ),
+                
               );
+              
             }),
+          ),
+          Positioned(
+            top: 30,
+            left: Get.find<LocalizationController>().isLtr ?10 : null,
+            right: Get.find<LocalizationController>().isLtr ? null : 10,            
+            child:Row(
+              children: [
+                if(store.ratingCount! > 0)
+                Icon(Icons.star, size: 15, color: Theme.of(context).primaryColor),
+                const SizedBox(width: Dimensions.paddingSizeExtraSmall),
+
+                   Text(store.avgRating!.toStringAsFixed(1), style: robotoRegular),
+                   const SizedBox(width: Dimensions.paddingSizeExtraSmall),
+
+                   Text("(${store.ratingCount})", style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor)),
+
+              ],
+            ),
+                   
           ),
 
         ]);
