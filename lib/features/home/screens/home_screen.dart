@@ -209,10 +209,26 @@ class _HomeScreenState extends State<HomeScreen> {
       bool isShop = splashController.module != null && splashController.module!.moduleType.toString() == AppConstants.ecommerce;
       bool isGrocery = splashController.module != null && splashController.module!.moduleType.toString() == AppConstants.grocery;
       bool isTaxi = splashController.module != null && splashController.module!.moduleType.toString() == AppConstants.taxi;
+      final  LinearGradient linearGradient = LinearGradient(
+        begin: Alignment.centerLeft,
+        end: Alignment.centerRight,
+        colors: [
+          Theme.of(context).splashColor,
+          AppColor.splashColorRight
+        ],
+      );
+
+      PreferredSizeWidget appBar = PreferredSize(
+        preferredSize: Size.zero, 
+        child: Container(decoration: BoxDecoration(gradient: linearGradient)),
+      );
+      if (ResponsiveHelper.isDesktop(context)){
+        appBar = const WebMenuBar();
+      }
 
       return GetBuilder<HomeController>(builder: (homeController) {
         return Scaffold(
-          appBar: ResponsiveHelper.isDesktop(context) ? const WebMenuBar() : null,
+          appBar: appBar,
           endDrawer: const MenuDrawer(),
           endDrawerEnableOpenDragGesture: false,
           backgroundColor: Theme.of(context).colorScheme.surface,
@@ -332,7 +348,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                     
-                                Icon(Icons.expand_more, color: Colors.white, size: 18),
+                                const Icon(Icons.expand_more, color: Colors.white, size: 18),
                     
                               ]),
                     
@@ -355,7 +371,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             )) : const SizedBox(),
                           ]);
                         }),
-                        onTap: () => Get.toNamed(RouteHelper.getNotificationRoute()),
+                        onTap: (){ 
+                          Get.toNamed(RouteHelper.getNotificationRoute())?.then(
+                            (_) => Get.find<NotificationController>().getNotificationList(true),
+                          );
+                        },
                       ),
                     ])),
                     actions: const [SizedBox()],
@@ -367,14 +387,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     delegate: SliverDelegate(
                       callback: (val){}, child: Center(child: Container(
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [
-                            Theme.of(context).splashColor,
-                            AppColor.splashColorRight
-                          ],
-                        ),
+                        gradient: linearGradient,
                       ),
                       height: 50, width: Dimensions.webMaxWidth,
                       // color: searchBgShow ? Get.find<ThemeController>().darkTheme ? Theme.of(context).colorScheme.surface : Theme.of(context).cardColor : Colors.black,
