@@ -40,7 +40,9 @@ class FavouriteScreenState extends State<FavouriteScreen> with SingleTickerProvi
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'favourite'.tr, backButton: false),
+      appBar: CustomAppBar(
+        
+        title: 'favourite'.tr, backButton: false),
       endDrawer: const MenuDrawer(),endDrawerEnableOpenDragGesture: false,
       body: AuthHelper.isLoggedIn() ? SafeArea(child: Column(children: [
 

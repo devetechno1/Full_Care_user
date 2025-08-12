@@ -99,7 +99,8 @@ Future<void> main() async {
 
   runApp(
     DevicePreview(
-      enabled: !kReleaseMode,
+      enabled: false,
+      //!kReleaseMode,
       builder: (context) => MyApp(
         languages: languages,
         body: body,
@@ -150,10 +151,10 @@ class _MyAppState extends State<MyApp> {
 
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark,
-      statusBarBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.light,
+      statusBarBrightness: Brightness.light,
       systemNavigationBarColor: Colors.transparent,
-      systemNavigationBarIconBrightness: Brightness.dark,
+      systemNavigationBarIconBrightness: Brightness.light,
     ));
 
     return GetBuilder<ThemeController>(builder: (themeController) {

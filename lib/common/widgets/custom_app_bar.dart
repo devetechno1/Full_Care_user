@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:sixam_mart/helper/responsive_helper.dart';
 import 'package:sixam_mart/helper/route_helper.dart';
 import 'package:sixam_mart/util/dimensions.dart';
@@ -23,6 +24,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return ResponsiveHelper.isDesktop(context) ? const WebMenuBar() : AppBar(
+       systemOverlayStyle: const SystemUiOverlayStyle(
+                    statusBarColor: Colors.transparent,          
+                    statusBarIconBrightness: Brightness.light,  
+                    statusBarBrightness: Brightness.dark,     
+                   ),
       title: Text(title, style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeLarge, fontWeight: FontWeight.w600, color: Colors.white)),
       centerTitle: true,
       leading: backButton ? IconButton(
@@ -49,7 +55,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: showCart || onVegFilterTap != null ? [
         showCart ? IconButton(
           onPressed: () => Get.toNamed(RouteHelper.getCartRoute()),
-          icon: CartWidget(color: Theme.of(context).textTheme.bodyLarge!.color, size: 25),
+          icon: CartWidget(color: Colors.white, size: 25),
         ) : const SizedBox(),
 
         onVegFilterTap != null ? VegFilterWidget(

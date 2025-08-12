@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
-import 'package:sixam_mart/common/controllers/theme_controller.dart';
+import 'package:flutter/services.dart';
 import 'package:sixam_mart/features/banner/controllers/banner_controller.dart';
 import 'package:sixam_mart/features/brands/controllers/brands_controller.dart';
 import 'package:sixam_mart/features/home/controllers/advertisement_controller.dart';
@@ -270,10 +270,14 @@ class _HomeScreenState extends State<HomeScreen> {
               ) : CustomScrollView(
                 controller: _scrollController,
                 physics: const AlwaysScrollableScrollPhysics(),
-                slivers: [
-            
+                slivers: [           
                   /// App Bar
                     SliverAppBar(
+                       systemOverlayStyle: const SystemUiOverlayStyle(
+                    statusBarColor: Colors.transparent,          
+                    statusBarIconBrightness: Brightness.light,  
+                    statusBarBrightness: Brightness.dark,     
+                   ),
                       floating: true,
                       flexibleSpace: Container(
 
@@ -360,7 +364,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   /// Search Button
                   !showMobileModule && !isTaxi ? SliverPersistentHeader(
                     pinned: true,
-                    delegate: SliverDelegate(callback: (val){}, child: Center(child: Container(
+                    delegate: SliverDelegate(
+                      callback: (val){}, child: Center(child: Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           begin: Alignment.centerLeft,
