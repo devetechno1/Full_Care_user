@@ -47,9 +47,10 @@ class _SupportScreenState extends State<SupportScreen> {
               : SizedBox(
                   width: Dimensions.webMaxWidth,
                   child: Column(children: [
-                    const SizedBox(height: Dimensions.paddingSizeSmall),
-                    Image.asset(Images.supportImage, height: 130,width:double.infinity),
-                    Image.asset(Images.logo, width: 200),
+                    const SizedBox(height: Dimensions.paddingSizeExtraLarge),
+                    Transform.scale(scale:2,child: Image.asset(Images.supportImage, height: 140,width: double.infinity)),
+                    const SizedBox(height: Dimensions.paddingSizeExtraLarge),
+                    Image.asset(Images.logo, width: 140),
                     const SizedBox(height: 40),
                     SupportButtonWidget(
                       icon: Icons.location_on,

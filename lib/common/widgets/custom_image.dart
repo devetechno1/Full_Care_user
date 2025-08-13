@@ -19,13 +19,14 @@ class CustomImage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return AnimatedScale(
+      
       scale: isHovered ? 1.1 : 1.0, // Scale animation
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
       child: kIsWeb ? Image.network(
           image, height: height, width: width, fit: fit,
           errorBuilder: (context, error, stackTrace) {
-            return Image.asset(
+            return Image.asset(           
               placeholder.isNotEmpty ? placeholder : (isNotification ? Images.notificationPlaceholder : Images.placeholder),
               height: height, width: width, fit: fit,
             );

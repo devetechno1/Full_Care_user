@@ -35,7 +35,7 @@ class Images {
   static const String guest = 'assets/image/guest.png';
   static const String profileBg = 'assets/image/profile_bg.png';
   static const String warning = 'assets/image/warning.png';
-  static const String supportImage = 'assets/image/support_image.jpg';
+  static const String supportImage = 'assets/image/support_imag.png';
   static const String cashOnDelivery = 'assets/image/cash_on_delivery.png';
   static const String digitalPayment = 'assets/image/digital_payment.png';
   static const String route = 'assets/image/route.png';

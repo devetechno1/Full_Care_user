@@ -24,6 +24,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sixam_mart/features/profile/widgets/web_profile_widget.dart';
 
+import '../../../theme/colors.dart';
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
@@ -59,7 +61,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: FooterView(
                 minHeight: isLoggedIn ?  ResponsiveHelper.isDesktop(context) ? 0.4 : 0.6 : 0.35,
                 child:(isLoggedIn && ResponsiveHelper.isDesktop(context)) ? const WebProfileWidget() : Container(
-                  color: Theme.of(context).primaryColor.withValues(alpha: 0.2),
+                  decoration:const BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                      AppColor.splashColorLeft,
+                      AppColor.splashColorRight, 
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    )
+                    
+                  ),
+                
                   width: Dimensions.webMaxWidth, height: context.height,
                   child: Center(
                     child: Column(children: [
@@ -69,10 +81,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                             !ResponsiveHelper.isDesktop(context) ? IconButton(
                               onPressed: () => Get.back(),
-                              icon: const Icon(Icons.arrow_back_ios),
+                              icon: const Icon(Icons.arrow_back_ios, color: AppColor.whiteColor),
                             ) : const SizedBox(),
 
-                            Text('profile'.tr, style: robotoBold.copyWith(fontSize: Dimensions.fontSizeLarge)),
+                            Text('profile'.tr, style: robotoBold.copyWith(fontSize: Dimensions.fontSizeLarge,color: AppColor.whiteColor)),
                             const SizedBox(width: 50),
                           ]),
                         ),
@@ -82,24 +94,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         padding: const EdgeInsets.only(left: Dimensions.paddingSizeExtremeLarge, right: Dimensions.paddingSizeExtremeLarge, bottom: Dimensions.paddingSizeLarge),
                         child: Row(children: [
 
-                          ClipOval(child: CustomImage(
-                            placeholder: Images.guestIcon,
+                          ClipOval(
+                            child: CustomImage(
+                            placeholder: Images.guestIconLight,
                             image: '${(profileController.userInfoModel != null && isLoggedIn) ? profileController.userInfoModel!.imageFullUrl : ''}',
-                            height: 70, width: 70, fit: BoxFit.cover,
-                          )),
+                            height: 70, width: 70, fit: BoxFit.cover
+                                       )),
                           const SizedBox(width: Dimensions.paddingSizeDefault),
-
                           Expanded(
                             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                               Text(
                                 isLoggedIn ? '${profileController.userInfoModel?.fName ?? ''} ${profileController.userInfoModel?.lName ?? ''}' : 'guest_user'.tr,
-                                style: robotoBold.copyWith(fontSize: Dimensions.fontSizeExtraLarge),
+                                style: robotoBold.copyWith(fontSize: Dimensions.fontSizeExtraLarge,color: AppColor.whiteColor),
                               ),
                               const SizedBox(height: Dimensions.paddingSizeExtraSmall),
 
                               isLoggedIn ? Text(
                                 '${'joined'.tr} ${DateConverter.containTAndZToUTCFormat(profileController.userInfoModel!.createdAt!)}',
-                                style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).primaryColor),
+                                style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall,color: AppColor.whiteColor),
                               ) : InkWell(
                                 onTap: () async {
                                   if(!ResponsiveHelper.isDesktop(context)) {
@@ -114,7 +126,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 },
                                 child: Text(
                                   'login_to_view_all_feature'.tr,
-                                  style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).primaryColor),
+                                  style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall, color: AppColor.whiteColor),
                                 ),
                               ),
                             ]),
