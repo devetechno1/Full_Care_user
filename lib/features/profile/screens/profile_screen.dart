@@ -104,13 +104,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Expanded(
                             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                               Text(
+                                
                                 isLoggedIn ? '${profileController.userInfoModel?.fName ?? ''} ${profileController.userInfoModel?.lName ?? ''}' : 'guest_user'.tr,
                                 style: robotoBold.copyWith(fontSize: Dimensions.fontSizeExtraLarge,color: AppColor.whiteColor),
                               ),
                               const SizedBox(height: Dimensions.paddingSizeExtraSmall),
 
                               isLoggedIn ? Text(
-                                '${'joined'.tr} ${DateConverter.containTAndZToUTCFormat(profileController.userInfoModel!.createdAt!)}',
+                                textDirection: TextDirection.ltr,
+                                '${DateConverter.containTAndZToUTCFormat(profileController.userInfoModel!.createdAt!)} ${'joined'.tr} ',
                                 style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall,color: AppColor.whiteColor),
                               ) : InkWell(
                                 onTap: () async {
