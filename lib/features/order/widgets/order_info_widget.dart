@@ -207,15 +207,15 @@ class OrderInfoWidget extends StatelessWidget {
                 ),
               ]) : const SizedBox(),
               SizedBox(height: order.deliveryInstruction != null ? Dimensions.paddingSizeSmall : 0),
-
-              order.orderStatus == 'canceled' ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                
+              order.orderStatus == 'canceled' && (order.cancellationReason != null && order.cancellationReason?.trim() != 'null') ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Divider(height: Dimensions.paddingSizeLarge, color: Theme.of(context).disabledColor.withValues(alpha: 0.30)),
                 Text('${'cancellation_note'.tr}:', style: robotoMedium),
                 const SizedBox(height: Dimensions.paddingSizeSmall),
-
                 InkWell(
                   onTap: () => Get.dialog(ReviewDialogWidget(review: ReviewModel(comment: order.cancellationReason), fromOrderDetails: true)),
-                  child: Text(
+                  child:
+                   Text(
                     order.cancellationReason ?? '', maxLines: 2, overflow: TextOverflow.ellipsis,
                     style: robotoRegular.copyWith(color: Theme.of(context).disabledColor),
                   ),

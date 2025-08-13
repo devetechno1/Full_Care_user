@@ -42,7 +42,7 @@ class ReviewDialogWidget extends StatelessWidget {
               maxLines: 1, overflow: TextOverflow.ellipsis,
               style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeExtraSmall),
             ),
-
+           
             Text(
               review.comment!,
               style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color: Theme.of(context).disabledColor),
