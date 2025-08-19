@@ -11,6 +11,8 @@ import 'package:sixam_mart/common/widgets/paginated_list_view.dart';
 import 'package:sixam_mart/common/widgets/veg_filter_widget.dart';
 import 'package:sixam_mart/features/store/widgets/bottom_cart_widget.dart';
 
+import '../../../theme/colors.dart';
+
 class StoreItemSearchScreen extends StatefulWidget {
   final String? storeID;
   const StoreItemSearchScreen({super.key, required this.storeID});
@@ -38,9 +40,19 @@ class _StoreItemSearchScreenState extends State<StoreItemSearchScreen> {
           appBar: PreferredSize(
             preferredSize: const Size(Dimensions.webMaxWidth, 60),
             child: Container(
+              decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                Theme.of(context).splashColor,
+                AppColor.splashColorRight,
+              ],
+            ),
+          ),
               height: 60 + context.mediaQueryPadding.top, width: Dimensions.webMaxWidth,
               padding: EdgeInsets.only(top: context.mediaQueryPadding.top),
-              color: Theme.of(context).cardColor,
+              // color: Theme.of(context).cardColor,
               alignment: Alignment.center,
               child: SizedBox(width: Dimensions.webMaxWidth, child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall, vertical: Dimensions.paddingSizeSmall),
@@ -48,7 +60,7 @@ class _StoreItemSearchScreenState extends State<StoreItemSearchScreen> {
 
                   IconButton(
                     onPressed: () => Get.back(),
-                    icon: Icon(Icons.arrow_back_ios, color: Theme.of(context).primaryColor),
+                    icon: Icon(Icons.arrow_back_ios, color: AppColor.whiteColor),
                   ),
 
                   Expanded(child: TextField(
@@ -59,19 +71,19 @@ class _StoreItemSearchScreenState extends State<StoreItemSearchScreen> {
                     textAlignVertical: TextAlignVertical.center,
                     decoration: InputDecoration(
                       hintText: 'search_item_in_store'.tr,
-                      hintStyle: robotoRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).hintColor),
+                      hintStyle: robotoRegular.copyWith(fontSize: Dimensions.fontSizeLarge, color: AppColor.whiteColor),
                       isDense: true,
                       contentPadding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-                        borderSide: BorderSide(color: Theme.of(context).primaryColor.withValues(alpha: 0.3), width: 1),
+                        borderSide: BorderSide(color: AppColor.whiteColor, width: 1),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-                        borderSide: BorderSide(color: Theme.of(context).primaryColor.withValues(alpha: 0.3), width: 1),
+                        borderSide: BorderSide(color: AppColor.whiteColor, width: 1),
                       ),
                       suffixIcon: IconButton(
-                        icon: Icon(Icons.search, color: Theme.of(context).hintColor, size: 25),
+                        icon: Icon(Icons.search, color: AppColor.whiteColor, size: 25),
                         onPressed: () => Get.find<StoreController>().getStoreSearchItemList(
                           _searchController.text.trim(), widget.storeID, 1, Get.find<StoreController>().searchType,
                         ),

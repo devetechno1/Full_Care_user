@@ -118,7 +118,7 @@ class CategoryItemScreenState extends State<CategoryItemScreen> with TickerProvi
             backgroundColor: Theme.of(context).cardColor,
             surfaceTintColor: Theme.of(context).cardColor,
             flexibleSpace: Container(
-          decoration: const BoxDecoration(
+           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
                    AppColor.splashColorLeft,
@@ -126,9 +126,9 @@ class CategoryItemScreenState extends State<CategoryItemScreen> with TickerProvi
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
+               ),
+              ),
             ),
-          ),
-        ),
             shadowColor: Theme.of(context).disabledColor.withValues(alpha: 0.5),
             elevation: 2,
             title: catController.isSearching ? SizedBox(
@@ -216,7 +216,8 @@ class CategoryItemScreenState extends State<CategoryItemScreen> with TickerProvi
 
               const SizedBox(width: Dimensions.paddingSizeSmall),
             ],
-          )),
+          )
+          ),
           endDrawer: const MenuDrawer(),endDrawerEnableOpenDragGesture: false,
           body: ResponsiveHelper.isDesktop(context) ? SingleChildScrollView(
             child: FooterView(

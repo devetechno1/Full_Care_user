@@ -1,27 +1,30 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:sixam_mart/common/controllers/theme_controller.dart';
 import 'package:sixam_mart/common/widgets/custom_asset_image_widget.dart';
 import 'package:sixam_mart/common/widgets/custom_ink_well.dart';
+import 'package:sixam_mart/common/widgets/custom_image.dart';
+import 'package:sixam_mart/common/widgets/custom_snackbar.dart';
+import 'package:sixam_mart/common/widgets/footer_view.dart';
+import 'package:sixam_mart/common/widgets/menu_drawer.dart';
+import 'package:sixam_mart/common/widgets/web_menu_bar.dart';
 import 'package:sixam_mart/features/cart/controllers/cart_controller.dart';
 import 'package:sixam_mart/features/item/controllers/item_controller.dart';
 import 'package:sixam_mart/features/search/controllers/search_controller.dart' as search;
+import 'package:sixam_mart/features/search/widgets/filter_widget.dart';
+import 'package:sixam_mart/features/search/widgets/search_field_widget.dart';
+import 'package:sixam_mart/features/search/widgets/search_result_widget.dart';
 import 'package:sixam_mart/features/splash/controllers/splash_controller.dart';
 import 'package:sixam_mart/helper/auth_helper.dart';
 import 'package:sixam_mart/helper/responsive_helper.dart';
 import 'package:sixam_mart/util/dimensions.dart';
 import 'package:sixam_mart/util/images.dart';
 import 'package:sixam_mart/util/styles.dart';
-import 'package:sixam_mart/common/widgets/custom_image.dart';
-import 'package:sixam_mart/common/widgets/custom_snackbar.dart';
-import 'package:sixam_mart/common/widgets/footer_view.dart';
-import 'package:sixam_mart/common/widgets/menu_drawer.dart';
-import 'package:sixam_mart/common/widgets/web_menu_bar.dart';
-import 'package:sixam_mart/features/search/widgets/filter_widget.dart';
-import 'package:sixam_mart/features/search/widgets/search_field_widget.dart';
-import 'package:sixam_mart/features/search/widgets/search_result_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sixam_mart/features/store/widgets/bottom_cart_widget.dart';
+
+import '../../../theme/colors.dart';
 
 class SearchScreen extends StatefulWidget {
   final String? queryText;
@@ -80,7 +83,57 @@ class SearchScreenState extends State<SearchScreen> with TickerProviderStateMixi
         }
       },
       child: Scaffold(
-        appBar: ResponsiveHelper.isDesktop(context) ? const WebMenuBar() : null,
+        appBar: ResponsiveHelper.isDesktop(context)
+            ? const WebMenuBar()
+            : AppBar(
+                backgroundColor: Theme.of(context).cardColor,
+                surfaceTintColor: Theme.of(context).cardColor,
+                elevation: 2,
+                shadowColor: Theme.of(context).disabledColor.withValues(alpha: 0.5),
+                flexibleSpace: Container(
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        AppColor.splashColorLeft,
+                        AppColor.splashColorRight,
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                ),
+                title: Text(
+                  'search_items_and_stores'.tr,
+                  style: robotoRegular.copyWith(
+                    fontSize: Dimensions.fontSizeLarge,
+                    color: Colors.white,
+                  ),
+                ),
+                centerTitle: false,
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back_ios_new),
+                  color: Colors.white,
+                  onPressed: () {
+                    final c = Get.find<search.SearchController>();
+                    if(c.isSearchMode) {
+                      Get.back();
+                    } else {
+                      _showSuggestion = false;
+                      c.setSearchMode(true);
+                      c.setStore(false);
+                      setState(() {});
+                    }
+                  },
+                ),
+                actions: [
+                  IconButton(
+                    onPressed: () => _actionSearch(false, _searchController.text.trim(), false),
+                    icon: const Icon(Icons.filter_alt),
+                    color: Colors.white,
+                  ),
+                  const SizedBox(width: Dimensions.paddingSizeSmall),
+                ],
+              ),
         endDrawer: const MenuDrawer(), endDrawerEnableOpenDragGesture: false,
         body: SafeArea(child: Padding(
           padding: ResponsiveHelper.isDesktop(context) ? EdgeInsets.zero : const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
@@ -217,7 +270,6 @@ class SearchScreenState extends State<SearchScreen> with TickerProviderStateMixi
                     onChanged: (text) {
                       searchController.setSearchText(text);
                       _searchSuggestions(text);
-                      // _searchController.text = searchController.searchText!;
                     },
                     onSubmit: (text) => _actionSearch(true, _searchController.text.trim(), false),
                   ),
@@ -269,7 +321,6 @@ class SearchScreenState extends State<SearchScreen> with TickerProviderStateMixi
                               child: InkWell(
                                 onTap: () {
                                   _searchController.text = searchController.historyList[index];
-                                  // searchController.setSearchText(searchController.historyList[index]);
                                   searchController.searchData(searchController.historyList[index], false);
                                 },
                                 child: Row(
@@ -441,7 +492,6 @@ class SearchScreenState extends State<SearchScreen> with TickerProviderStateMixi
     }
   }
 
-
   Widget showSuggestions(BuildContext context, search.SearchController searchController, List<String> foodsAndRestaurants) {
     return SingleChildScrollView(
       child: FooterView(
@@ -468,7 +518,6 @@ class SearchScreenState extends State<SearchScreen> with TickerProviderStateMixi
             child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               const CustomAssetImageWidget(Images.emptyBox, height: 100, width: 100),
               const SizedBox(height: Dimensions.paddingSizeLarge),
-
               Text('no_suggestions_found'.tr, style: robotoMedium.copyWith(color: Theme.of(context).hintColor)),
             ]),
           ),
@@ -476,5 +525,4 @@ class SearchScreenState extends State<SearchScreen> with TickerProviderStateMixi
       ),
     );
   }
-
 }
