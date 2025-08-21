@@ -44,6 +44,7 @@ class RatingBar extends StatelessWidget {
 
     return Row(
       mainAxisSize: MainAxisSize.min,
+      textDirection: TextDirection.ltr,
       children: starList,
     );
   }
