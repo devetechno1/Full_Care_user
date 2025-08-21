@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' hide Banner;
 import 'package:get/get.dart';
 import 'package:sixam_mart/common/widgets/corner_banner/banner.dart';
 import 'package:sixam_mart/common/widgets/corner_banner/positioned_banner.dart';

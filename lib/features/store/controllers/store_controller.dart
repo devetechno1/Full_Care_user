@@ -421,7 +421,7 @@ class StoreController extends GetxController implements GetxService {
     }else {
       _isLoading = true;
       _store = null;
-      Store? storeDetails = await storeServiceInterface.getStoreDetails(store.id.toString(), fromCart, slug, Get.find<LocalizationController>().locale.languageCode,
+      Store? storeDetails = await storeServiceInterface.getStoreDetails(store.id?.toString() ?? '', fromCart, slug, Get.find<LocalizationController>().locale.languageCode,
           ModuleHelper.getModule(), ModuleHelper.getCacheModule()?.id, ModuleHelper.getModule()?.id);
       if (storeDetails != null) {
         _store = storeDetails;
