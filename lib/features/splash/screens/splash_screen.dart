@@ -13,6 +13,7 @@ import 'package:get/get.dart';
 
 import '../../../common/widgets/bouncy_widget.dart';
 import '../../../theme/colors.dart';
+import '../../../util/dimensions.dart';
 
 class SplashScreen extends StatefulWidget {
   final NotificationBodyModel? body;
@@ -178,15 +179,41 @@ class SplashScreenState extends State<SplashScreen> {
       ),
         child: GetBuilder<SplashController>(builder: (splashController) {
           return Center(
-            child: splashController.hasConnection ? Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                  BouncyWidget(
-                    duration: const Duration(milliseconds: 2000), lift: 50, ratio: 0.5, pause: 0.25,
-                    child: SizedBox(width: 150, child: Image.asset(Images.splashLogo, width: 150))),
-              ],
-            ) : NoInternetScreen(child: SplashScreen(body: widget.body)),
-          );
+        child: splashController.hasConnection
+            ? Stack(
+                children: [
+                  Center(
+                    child: BouncyWidget(
+                      duration: const Duration(milliseconds: 2000),
+                      lift: 50,
+                      ratio: 0.5,
+                      pause: 0.25,
+                      child: SizedBox(
+                        width: 150,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Image.asset(Images.splashLogo, width: 150),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 16,
+                    right: 16,
+                    child: Text(
+                      'v 1.0.0',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: Dimensions.fontSizeOverSmall,
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            : NoInternetScreen(child: SplashScreen(body: widget.body)),
+      );
         }),
       ),
     );
