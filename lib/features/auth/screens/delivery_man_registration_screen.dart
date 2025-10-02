@@ -203,13 +203,15 @@ class _DeliveryManRegistrationScreenState extends State<DeliveryManRegistrationS
                               child: InkWell(
                                 onTap: () => deliverymanRegistrationController.pickDmImage(true, false),
                                 child: DottedBorder(
+                                  options: RoundedRectDottedBorderOptions(
+                                    radius: const Radius.circular(Dimensions.radiusDefault),
                                   color: Theme.of(context).primaryColor,
                                   strokeWidth: 1,
                                   strokeCap: StrokeCap.butt,
                                   dashPattern: const [5, 5],
                                   padding: const EdgeInsets.all(0),
-                                  borderType: BorderType.RRect,
-                                  radius: const Radius.circular(Dimensions.radiusDefault),
+                                  ),
+                                
                                   child: Visibility(
                                     visible: deliverymanRegistrationController.pickedImage != null,
                                     child: Center(
@@ -502,13 +504,15 @@ class _DeliveryManRegistrationScreenState extends State<DeliveryManRegistrationS
                               return InkWell(
                                 onTap: () => deliverymanRegistrationController.pickDmImage(false, false),
                                 child: DottedBorder(
-                                  color: Theme.of(context).primaryColor,
+                                  options: RoundedRectDottedBorderOptions(
+                                    radius: const Radius.circular(Dimensions.radiusDefault),
+                                   color: Theme.of(context).primaryColor,
                                   strokeWidth: 1,
                                   strokeCap: StrokeCap.butt,
                                   dashPattern: const [5, 5],
                                   padding: const EdgeInsets.all(5),
-                                  borderType: BorderType.RRect,
-                                  radius: const Radius.circular(Dimensions.radiusDefault),
+                                  ),
+            
                                   child: SizedBox(
                                     height: 120, width: double.infinity,
                                     child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -522,13 +526,16 @@ class _DeliveryManRegistrationScreenState extends State<DeliveryManRegistrationS
                             return Padding(
                               padding: const EdgeInsets.only(bottom: Dimensions.paddingSizeSmall),
                               child: DottedBorder(
-                                color: Theme.of(context).primaryColor,
+                                options: RoundedRectDottedBorderOptions(
+                                  radius: const Radius.circular(Dimensions.radiusDefault),
+                                 color: Theme.of(context).primaryColor,
                                 strokeWidth: 1,
                                 strokeCap: StrokeCap.butt,
                                 dashPattern: const [5, 5],
                                 padding: const EdgeInsets.all(5),
-                                borderType: BorderType.RRect,
-                                radius: const Radius.circular(Dimensions.radiusDefault),
+                                ),
+      
+                            
                                 child: Stack(children: [
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
@@ -637,13 +644,14 @@ class _DeliveryManRegistrationScreenState extends State<DeliveryManRegistrationS
                           child: InkWell(
                             onTap: () => deliverymanRegistrationController.pickDmImage(true, false),
                             child: DottedBorder(
-                              color: Theme.of(context).primaryColor,
+                              options: RoundedRectDottedBorderOptions(
+                                radius: const Radius.circular(Dimensions.radiusDefault),
+                               color: Theme.of(context).primaryColor,
                               strokeWidth: 1,
                               strokeCap: StrokeCap.butt,
                               dashPattern: const [5, 5],
                               padding: const EdgeInsets.all(0),
-                              borderType: BorderType.RRect,
-                              radius: const Radius.circular(Dimensions.radiusDefault),
+                              ),
                               child: Visibility(
                                 visible: deliverymanRegistrationController.pickedImage != null,
                                 child: Center(
@@ -973,13 +981,15 @@ class _DeliveryManRegistrationScreenState extends State<DeliveryManRegistrationS
                               return InkWell(
                                 onTap: () => deliverymanRegistrationController.pickDmImage(false, false),
                                 child: DottedBorder(
+                                  options: RoundedRectDottedBorderOptions(radius: 
+                                    const Radius.circular(Dimensions.radiusDefault),
                                   color: Theme.of(context).primaryColor,
                                   strokeWidth: 1,
                                   strokeCap: StrokeCap.butt,
                                   dashPattern: const [5, 5],
                                   padding: const EdgeInsets.all(5),
-                                  borderType: BorderType.RRect,
-                                  radius: const Radius.circular(Dimensions.radiusDefault),
+                                    ),
+                                   
                                   child: Container(
                                     height: 120, width: 150, alignment: Alignment.center,
                                     padding: const EdgeInsets.all(Dimensions.paddingSizeDefault),

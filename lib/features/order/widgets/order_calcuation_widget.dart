@@ -224,15 +224,15 @@ class OrderCalculationWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
                 ),
                 child: DottedBorder(
-                  color: Theme.of(context).primaryColor,
+                  options: RoundedRectDottedBorderOptions(radius: const Radius.circular(Dimensions.radiusDefault),
+                                    color: Theme.of(context).primaryColor,
                   strokeWidth: 1,
                   strokeCap: StrokeCap.butt,
                   dashPattern: const [8, 5],
                   padding: const EdgeInsets.all(8),
-                  borderType: BorderType.RRect,
-                  radius: const Radius.circular(Dimensions.radiusDefault),
-                  child: Column(children: [
+                  ),
 
+                  child: Column(children: [
                     Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                       Text('total_amount'.tr, style: robotoMedium.copyWith(
                         fontSize: ResponsiveHelper.isDesktop(context) ? Dimensions.fontSizeSmall : Dimensions.fontSizeDefault, color: Theme.of(context).primaryColor,

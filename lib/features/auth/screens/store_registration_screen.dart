@@ -296,13 +296,16 @@ class _StoreRegistrationScreenState extends State<StoreRegistrationScreen> with 
                                         child: InkWell(
                                           onTap: () => storeRegController.pickImage(true, false),
                                           child: DottedBorder(
+                                            options: RoundedRectDottedBorderOptions(
+                                            radius: const Radius.circular(Dimensions.radiusDefault),
                                             color: Theme.of(context).primaryColor,
                                             strokeWidth: 1,
                                             strokeCap: StrokeCap.butt,
                                             dashPattern: const [5, 5],
                                             padding: const EdgeInsets.all(0),
-                                            borderType: BorderType.RRect,
-                                            radius: const Radius.circular(Dimensions.radiusDefault),
+                                            ),
+                                    
+                                          
                                             child: Center(
                                               child: Visibility(
                                                 visible: storeRegController.pickedLogo != null,
@@ -372,13 +375,15 @@ class _StoreRegistrationScreenState extends State<StoreRegistrationScreen> with 
                                         child: InkWell(
                                           onTap: () => storeRegController.pickImage(false, false),
                                           child: DottedBorder(
+                                            options: RoundedRectDottedBorderOptions(
+                                              radius: const Radius.circular(Dimensions.radiusDefault),
                                             color: Theme.of(context).primaryColor,
                                             strokeWidth: 1,
                                             strokeCap: StrokeCap.butt,
                                             dashPattern: const [5, 5],
                                             padding: const EdgeInsets.all(0),
-                                            borderType: BorderType.RRect,
-                                            radius: const Radius.circular(Dimensions.radiusDefault),
+                                            ),
+                                 
                                             child: Center(
                                               child: Visibility(
                                                 visible: storeRegController.pickedCover != null,
@@ -951,13 +956,14 @@ class _StoreRegistrationScreenState extends State<StoreRegistrationScreen> with 
                       child: InkWell(
                         onTap: () => storeRegController.pickImage(true, false),
                         child: DottedBorder(
-                          color: Theme.of(context).primaryColor,
+                          options: RoundedRectDottedBorderOptions(radius: const Radius.circular(Dimensions.radiusDefault),
+                           color: Theme.of(context).primaryColor,
                           strokeWidth: 1,
                           strokeCap: StrokeCap.butt,
                           dashPattern: const [5, 5],
                           padding: const EdgeInsets.all(0),
-                          borderType: BorderType.RRect,
-                          radius: const Radius.circular(Dimensions.radiusDefault),
+                          ),
+                     
                           child: Center(
                             child: Visibility(
                               visible: storeRegController.pickedLogo != null,
@@ -1018,13 +1024,15 @@ class _StoreRegistrationScreenState extends State<StoreRegistrationScreen> with 
                       child: InkWell(
                         onTap: () => storeRegController.pickImage(false, false),
                         child: DottedBorder(
+                          options: RoundedRectDottedBorderOptions(radius: const Radius.circular(Dimensions.radiusDefault),
                           color: Theme.of(context).primaryColor,
                           strokeWidth: 1,
                           strokeCap: StrokeCap.butt,
                           dashPattern: const [5, 5],
                           padding: const EdgeInsets.all(0),
-                          borderType: BorderType.RRect,
-                          radius: const Radius.circular(Dimensions.radiusDefault),
+                          ),
+
+                     
                           child: Center(
                             child: Visibility(
                               visible: storeRegController.pickedCover != null,

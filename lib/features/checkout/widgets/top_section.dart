@@ -169,13 +169,16 @@ class _TopSectionState extends State<TopSection> {
                         }
                       },
                       child: DottedBorder(
+                        options: RoundedRectDottedBorderOptions(
+                        radius: const Radius.circular(Dimensions.radiusDefault),
                         color: Theme.of(context).primaryColor,
                         strokeWidth: 1,
                         strokeCap: StrokeCap.butt,
                         dashPattern: const [5, 5],
                         padding: const EdgeInsets.all(0),
-                        borderType: BorderType.RRect,
-                        radius: const Radius.circular(Dimensions.radiusDefault),
+                        
+                        ),
+  
                         child: Container(
                           height: 98, width: 98, alignment: Alignment.center, decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
@@ -194,13 +197,15 @@ class _TopSectionState extends State<TopSection> {
                       borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
                     ),
                     child: DottedBorder(
+                      options: RoundedRectDottedBorderOptions(
+                      radius: const Radius.circular(Dimensions.radiusDefault,),
                       color: Theme.of(context).primaryColor,
                       strokeWidth: 1,
                       strokeCap: StrokeCap.butt,
                       dashPattern: const [5, 5],
                       padding: const EdgeInsets.all(0),
-                      borderType: BorderType.RRect,
-                      radius: const Radius.circular(Dimensions.radiusDefault),
+                      ),
+
                       child: Padding(
                         padding: const EdgeInsets.all(5.0),
                         child: Stack(children: [
