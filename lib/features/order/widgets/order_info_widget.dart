@@ -506,11 +506,11 @@ class OrderInfoWidget extends StatelessWidget {
               !isDesktop ? Text('delivery_details'.tr, style: robotoMedium) : const SizedBox(),
               !isDesktop ? const SizedBox(height: Dimensions.paddingSizeSmall) : const SizedBox(),
 
-              const SizedBox(height: Dimensions.paddingSizeSmall),
-              DeliveryDetailsWidget(from: true, address: order.store!.address),
+              // const SizedBox(height: Dimensions.paddingSizeSmall),
+              // DeliveryDetailsWidget(from: true, address: order.store!.address),
 
               const SizedBox(height: Dimensions.paddingSizeSmall),
-              DeliveryDetailsWidget(from: false, address: order.deliveryAddress?.address),
+              DeliveryDetailsWidget(from: false, address: order.deliveryAddress),
             ]),
           ) : const SizedBox(),
           SizedBox(height: !parcel ? Dimensions.paddingSizeSmall : 0),
