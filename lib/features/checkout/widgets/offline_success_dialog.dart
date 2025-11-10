@@ -35,10 +35,12 @@ class OfflineSuccessDialog extends StatelessWidget {
               ),
               const SizedBox(height: Dimensions.paddingSizeDefault),
 
-              RichText(textAlign: TextAlign.center, text: TextSpan(children: [
-                TextSpan(text: 'your_payment_has_been_successfully_processed_and_your_order'.tr, style: robotoMedium.copyWith(color: Theme.of(context).textTheme.bodyMedium!.color!.withValues(alpha: 0.4))),
-                TextSpan(text: ' #$orderId ', style: robotoBold.copyWith(color: Theme.of(context).primaryColor)),
-                TextSpan(text: 'has_been_placed'.tr, style: robotoMedium.copyWith(color: Theme.of(context).textTheme.bodyMedium!.color!.withValues(alpha: 0.4))),
+              RichText(textAlign: TextAlign.center, text: TextSpan(
+                style: robotoMedium.copyWith(color: Theme.of(context).textTheme.bodyMedium!.color!.withValues(alpha: 0.4)),
+                children: [
+                  TextSpan(text: "${'order_processing_after_payment_confirmation'.tr} ("),
+                  TextSpan(text: '#$orderId', style: robotoBold.copyWith(color: Theme.of(context).primaryColor)),
+                  TextSpan(text: ')'),
               ])),
               const SizedBox(height: Dimensions.paddingSizeLarge),
 

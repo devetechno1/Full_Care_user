@@ -1,4 +1,5 @@
 {
+  "order_processing_after_payment_confirmation": "جاري تنفيذ طلبك بعد تأكيد حالة الدفع",
   "landmark": "علامة مميزة",
   "write_landmark": "أدخل علامة مميزة قريبة",
   "please_upload_lower_size_file": "يرجى رفع ملف بحجم أصغر",
@@ -22,7 +23,7 @@
   "confirm_password": "تأكيد كلمة المرور",
   "remember_me": "تذكرنى",
   "forgot_password": "هل نسيت كلمة السر",
-  "forget_password":"هل نسيت كلمه السر؟",
+  "forget_password": "هل نسيت كلمه السر؟",
   "first_name": "الاسم الأول",
   "last_name": "اسم العائلة",
   "phone": "هاتف",

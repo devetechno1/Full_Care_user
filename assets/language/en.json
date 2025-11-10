@@ -1,4 +1,5 @@
 {
+  "order_processing_after_payment_confirmation": "Your order is being processed after payment confirmation",
   "landmark": "Landmark",
   "write_landmark": "Enter a nearby landmark",
   "please_upload_lower_size_file": "Please upload a smaller file",
@@ -1071,7 +1072,7 @@
   "most_popular_items": "Most Popular Items",
   "কাছা": "From You",
   "open_now": "Open Now",
-  "restaurants_near_you":"nurse offices Near you",
+  "restaurants_near_you": "nurse offices Near you",
   "item_that_you_love": "For You",
   "best_store_nearby": "Best nurse offices Nearby",
   "start_from": "Start From",

@@ -15,6 +15,7 @@ import 'package:sixam_mart/helper/module_helper.dart';
 import 'package:sixam_mart/helper/price_converter.dart';
 import 'package:sixam_mart/helper/responsive_helper.dart';
 import 'package:sixam_mart/helper/route_helper.dart';
+import 'package:sixam_mart/util/app_constants.dart';
 import 'package:sixam_mart/util/dimensions.dart';
 import 'package:sixam_mart/util/images.dart';
 import 'package:sixam_mart/util/styles.dart';
@@ -370,7 +371,7 @@ class _CartScreenState extends State<CartScreen> {
               ]),
             ) : const SizedBox(),
 
-            ResponsiveHelper.isDesktop(context) ? const SizedBox() : Container(
+            ResponsiveHelper.isDesktop(context) || item.moduleType == AppConstants.food ? const SizedBox() : Container(
               decoration: BoxDecoration(
                 color: Theme.of(context).cardColor,
                 border: Border.all(color: Theme.of(context).primaryColor, width: 0.5),
@@ -622,7 +623,7 @@ class CheckoutButton extends StatelessWidget {
               ) : const SizedBox(),
               ResponsiveHelper.isDesktop(context) ? const SizedBox(height: Dimensions.paddingSizeSmall) : const SizedBox(),
 
-              !ResponsiveHelper.isDesktop(context) ? const SizedBox() :
+              !ResponsiveHelper.isDesktop(context) || cartController.cartList.firstOrNull?.item?.moduleType == AppConstants.food ? const SizedBox() :
               Container(
                 width: Dimensions.webMaxWidth,
                 decoration: BoxDecoration(
