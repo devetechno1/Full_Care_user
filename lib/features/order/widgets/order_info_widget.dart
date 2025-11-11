@@ -98,6 +98,7 @@ class OrderInfoWidget extends StatelessWidget {
 
                 Text(
                   DateConverter.dateTimeStringToDateTime(order.createdAt!),
+                  textDirection: TextDirection.ltr,
                   style: robotoRegular,
                 ),
               ]),
@@ -106,7 +107,9 @@ class OrderInfoWidget extends StatelessWidget {
               order.scheduled == 1 ? Row(children: [
                 Text('${'scheduled_at'.tr}:', style: robotoRegular),
                 const Expanded(child: SizedBox()),
-                Text(DateConverter.dateTimeStringToDateTime(order.scheduleAt!), style: robotoMedium),
+                Text(DateConverter.dateTimeStringToDateTime(order.scheduleAt!), 
+                  textDirection: TextDirection.ltr,
+                style: robotoMedium),
               ]) : const SizedBox(),
 
               Get.find<SplashController>().configModel!.orderDeliveryVerification! ? const Divider(height: Dimensions.paddingSizeLarge) : const SizedBox(),
@@ -142,11 +145,8 @@ class OrderInfoWidget extends StatelessWidget {
                   // Text('${parcel ? 'charge_pay_by'.tr : 'item'.tr}:', style: robotoRegular),
                   // const SizedBox(width: Dimensions.paddingSizeExtraSmall),
 
-                  // Text(
-                  //   parcel ? order.chargePayer!.tr : orderController.orderDetails!.length.toString(),
-                  //   style: robotoMedium.copyWith(color: Theme.of(context).primaryColor),
-                  // ),
-                  const Expanded(child: SizedBox()),
+                  Text("order_status".tr,style: robotoRegular),
+                  const Spacer(),
 
                   Container(height: 7, width: 7, decoration: BoxDecoration(
                     color: (order.orderStatus == 'failed' || order.orderStatus == 'canceled' || order.orderStatus == 'refund_request_canceled')
@@ -158,6 +158,7 @@ class OrderInfoWidget extends StatelessWidget {
                   Text(
                     order.orderStatus == 'delivered' ? '${'delivered_at'.tr} \n${DateConverter.dateTimeStringToDateTime(order.delivered!)}'
                         : order.orderStatus!.tr,
+                    textDirection: TextDirection.ltr,
                     style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall),
                   ),
                 ]),

@@ -166,6 +166,7 @@ class OrderViewWidget extends StatelessWidget {
 
                                     Text(
                                       DateConverter.dateTimeStringToDateTime(paginatedOrderModel.orders![index].createdAt!),
+                                      textDirection: TextDirection.ltr,
                                       style: robotoRegular.copyWith(color: Theme.of(context).disabledColor, fontSize: Dimensions.fontSizeSmall),
                                     ),
                                   ]),

@@ -120,7 +120,7 @@ class OrderItemWidget extends StatelessWidget {
           padding: const EdgeInsets.only(top: Dimensions.paddingSizeExtraSmall),
           child: Row(children: [
             const SizedBox(width: 60),
-            Text('${'addons'.tr}: ', style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall)),
+            Text('${'medical_supplies'.tr}: ', style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall)),
             Flexible(child: Text(
                 addOnText,
                 style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor,
