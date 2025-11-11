@@ -27,6 +27,8 @@ import 'package:sixam_mart/features/checkout/widgets/web_delivery_instruction_vi
 import 'package:sixam_mart/features/store/widgets/camera_button_sheet_widget.dart';
 import 'dart:io';
 
+import '../../../util/app_constants.dart';
+
 class TopSection extends StatefulWidget {
   final CheckoutController checkoutController;
   final double charge;
@@ -239,40 +241,42 @@ class _TopSectionState extends State<TopSection> {
         const SizedBox(height: Dimensions.paddingSizeSmall),
 
         // delivery option
-        Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).cardColor,
-            boxShadow: [BoxShadow(color: Theme.of(context).primaryColor.withValues(alpha: 0.05), blurRadius: 10)],
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeLarge, vertical: Dimensions.paddingSizeSmall),
-          width: double.infinity,
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('delivery_type'.tr, style: robotoMedium),
-              const SizedBox(height: Dimensions.paddingSizeSmall),
+        if(AppConstants.food != Get.find<SplashController>().module?.moduleType)...[
+          Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+              boxShadow: [BoxShadow(color: Theme.of(context).primaryColor.withValues(alpha: 0.05), blurRadius: 10)],
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeLarge, vertical: Dimensions.paddingSizeSmall),
+            width: double.infinity,
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('delivery_type'.tr, style: robotoMedium),
+                const SizedBox(height: Dimensions.paddingSizeSmall),
 
-              widget.storeId != null ? DeliveryOptionButtonWidget(
-                value: 'delivery', title: 'home_delivery'.tr, charge: widget.charge,
-                isFree: widget.checkoutController.store!.freeDelivery, fromWeb: true, total: widget.total,
-                deliveryChargeForView: widget.deliveryChargeForView, badWeatherCharge: widget.badWeatherCharge, extraChargeForToolTip: widget.extraChargeForToolTip,
-              ) : SingleChildScrollView(scrollDirection: Axis.horizontal, child: Row(children: [
-                Get.find<SplashController>().configModel!.homeDeliveryStatus == 1 && widget.checkoutController.store!.delivery! ? DeliveryOptionButtonWidget(
+                widget.storeId != null ? DeliveryOptionButtonWidget(
                   value: 'delivery', title: 'home_delivery'.tr, charge: widget.charge,
-                  isFree: widget.checkoutController.store!.freeDelivery,  fromWeb: true, total: widget.total,
+                  isFree: widget.checkoutController.store!.freeDelivery, fromWeb: true, total: widget.total,
                   deliveryChargeForView: widget.deliveryChargeForView, badWeatherCharge: widget.badWeatherCharge, extraChargeForToolTip: widget.extraChargeForToolTip,
-                ) : const SizedBox(),
-                const SizedBox(width: Dimensions.paddingSizeDefault),
+                ) : SingleChildScrollView(scrollDirection: Axis.horizontal, child: Row(children: [
+                  Get.find<SplashController>().configModel!.homeDeliveryStatus == 1 && widget.checkoutController.store!.delivery! ? DeliveryOptionButtonWidget(
+                    value: 'delivery', title: 'home_delivery'.tr, charge: widget.charge,
+                    isFree: widget.checkoutController.store!.freeDelivery,  fromWeb: true, total: widget.total,
+                    deliveryChargeForView: widget.deliveryChargeForView, badWeatherCharge: widget.badWeatherCharge, extraChargeForToolTip: widget.extraChargeForToolTip,
+                  ) : const SizedBox(),
+                  const SizedBox(width: Dimensions.paddingSizeDefault),
 
-                Get.find<SplashController>().configModel!.takeawayStatus == 1 && widget.checkoutController.store!.takeAway! ? DeliveryOptionButtonWidget(
-                  value: 'take_away', title: 'take_away'.tr, charge: widget.deliveryCharge, isFree: true,  fromWeb: true, total: widget.total,
-                  deliveryChargeForView: widget.deliveryChargeForView, badWeatherCharge: widget.badWeatherCharge, extraChargeForToolTip: widget.extraChargeForToolTip,
-                ) : const SizedBox(),
-              ]),
-              ),
-            ],
+                  Get.find<SplashController>().configModel!.takeawayStatus == 1 && widget.checkoutController.store!.takeAway! ? DeliveryOptionButtonWidget(
+                    value: 'take_away', title: 'take_away'.tr, charge: widget.deliveryCharge, isFree: true,  fromWeb: true, total: widget.total,
+                    deliveryChargeForView: widget.deliveryChargeForView, badWeatherCharge: widget.badWeatherCharge, extraChargeForToolTip: widget.extraChargeForToolTip,
+                  ) : const SizedBox(),
+                ]),
+                ),
+              ],
+            ),
           ),
-        ),
-        const SizedBox(height: Dimensions.paddingSizeLarge),
+          const SizedBox(height: Dimensions.paddingSizeLarge),
+        ],
 
         /*///Delivery_fee
         !takeAway && !isGuestLoggedIn ? Center(child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [

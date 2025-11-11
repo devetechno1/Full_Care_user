@@ -70,7 +70,7 @@ class _OfflinePaymentScreenState extends State<OfflinePaymentScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: CustomAppBar(title: 'offline_payment'.tr),
+      appBar: CustomAppBar(title: 'pay_offline'.tr),
       body: SafeArea(
         child: GetBuilder<PaymentController>(
           builder: (paymentController) {
