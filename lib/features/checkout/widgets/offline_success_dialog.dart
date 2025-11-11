@@ -6,6 +6,8 @@ import 'package:sixam_mart/util/dimensions.dart';
 import 'package:sixam_mart/util/styles.dart';
 import 'package:sixam_mart/common/widgets/custom_button.dart';
 
+import '../../../util/images.dart';
+
 class OfflineSuccessDialog extends StatelessWidget {
   final int? orderId;
   const OfflineSuccessDialog({super.key, required this.orderId, });
@@ -25,7 +27,7 @@ class OfflineSuccessDialog extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall, vertical: Dimensions.paddingSizeLarge),
           child: SingleChildScrollView(
             child: Column(children: [
-              Icon(Icons.check_circle, size: 60, color: Theme.of(context).primaryColor),
+              Center(child: Image.asset(Images.inProgress, height: 60, width: 60)),
               const SizedBox(height: Dimensions.paddingSizeLarge),
 
               Text(

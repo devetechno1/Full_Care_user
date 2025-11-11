@@ -78,6 +78,7 @@ class Images {
   static const String chat = 'assets/image/chat.png';
   static const String image = 'assets/image/image.png';
   static const String send = 'assets/image/send.png';
+  static const String inProgress = 'assets/image/in_progress.png';
   static const String onTheWayGif = 'assets/image/on_the_way.gif';
   static const String processingGif = 'assets/image/processing.gif';
   static const String confirmedGif = 'assets/image/confirmed.gif';

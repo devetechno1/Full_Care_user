@@ -1044,7 +1044,7 @@
   "pay_on_this_account": "Pay on this account",
   "amount": "Amount",
   "write_your_note": "Write your note",
-  "order_placed_successfully": "Order Placed Successfully!",
+  "order_placed_successfully": "Payment confirmation in progress",
   "your_payment_has_been_successfully_processed_and_your_order": "Your payment has been successfully processed, and your order",
   "has_been_placed": "has been placed.",
   "offline_order_note": "If you accidentally provided incorrect payment information, you can edit the details in the order details section while the order is still pending.",
