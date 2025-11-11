@@ -56,7 +56,7 @@ class AuthController extends GetxController implements GetxService {
   bool _guestLoading = false;
   bool get guestLoading => _guestLoading;
 
-  bool _acceptTerms = true;
+  bool _acceptTerms = false;
   bool get acceptTerms => _acceptTerms;
 
   bool _isActiveRememberMe = false;
@@ -67,6 +67,9 @@ class AuthController extends GetxController implements GetxService {
 
   bool _isNumberLogin = false;
   bool get isNumberLogin => _isNumberLogin;
+
+  void resetAcceptTerms() => _acceptTerms = false;
+  
 
   var countryDialCode = "+20";
 

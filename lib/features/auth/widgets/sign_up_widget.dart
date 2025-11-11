@@ -64,6 +64,17 @@ class SignUpWidgetState extends State<SignUpWidget> {
             Get.find<SplashController>().configModel!.country!)
         .dialCode;
   }
+  
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _phoneController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    _referCodeController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

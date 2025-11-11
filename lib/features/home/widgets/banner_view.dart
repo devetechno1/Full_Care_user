@@ -10,7 +10,6 @@ import 'package:sixam_mart/features/location/domain/models/zone_response_model.d
 import 'package:sixam_mart/helper/address_helper.dart';
 import 'package:sixam_mart/helper/route_helper.dart';
 import 'package:sixam_mart/util/dimensions.dart';
-import 'package:sixam_mart/util/styles.dart';
 import 'package:sixam_mart/common/widgets/custom_image.dart';
 import 'package:sixam_mart/common/widgets/custom_snackbar.dart';
 import 'package:sixam_mart/features/store/screens/store_screen.dart';
@@ -108,24 +107,24 @@ class BannerView extends StatelessWidget {
             ),
 
             const SizedBox(height: Dimensions.paddingSizeExtraSmall),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: bannerList.map((bnr) {
-                int index = bannerList.indexOf(bnr);
-                int totalBanner = bannerList.length;
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 3),
-                  child: index == bannerController.currentIndex ? Container(
-                    decoration: BoxDecoration(color: Theme.of(context).primaryColor, borderRadius: BorderRadius.circular(Dimensions.radiusDefault)),
-                    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
-                    child: Text('${(index) + 1}/$totalBanner', style: robotoRegular.copyWith(color: Theme.of(context).cardColor, fontSize: 12)),
-                  ) : Container(
-                    height: 5, width: 6,
-                    decoration: BoxDecoration(color: Theme.of(context).primaryColor.withValues(alpha: 0.5), borderRadius: BorderRadius.circular(Dimensions.radiusDefault)),
-                  ),
-                );
-              }).toList(),
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: bannerList.map((bnr) {
+            //     int index = bannerList.indexOf(bnr);
+            //     int totalBanner = bannerList.length;
+            //     return Padding(
+            //       padding: const EdgeInsets.symmetric(horizontal: 3),
+            //       child: index == bannerController.currentIndex ? Container(
+            //         decoration: BoxDecoration(color: Theme.of(context).primaryColor, borderRadius: BorderRadius.circular(Dimensions.radiusDefault)),
+            //         padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+            //         child: Text('${(index) + 1}/$totalBanner', style: robotoRegular.copyWith(color: Theme.of(context).cardColor, fontSize: 12)),
+            //       ) : Container(
+            //         height: 5, width: 6,
+            //         decoration: BoxDecoration(color: Theme.of(context).primaryColor.withValues(alpha: 0.5), borderRadius: BorderRadius.circular(Dimensions.radiusDefault)),
+            //       ),
+            //     );
+            //   }).toList(),
+            // ),
 
           ],
         ) : Shimmer(
