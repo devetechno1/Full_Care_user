@@ -79,7 +79,7 @@ class DeliverymanRegistrationController extends GetxController implements GetxSe
   int? _vehicleIndex = 0;
   int? get vehicleIndex => _vehicleIndex;
 
-  bool _acceptTerms = false;
+  bool _acceptTerms = true;
   bool get acceptTerms => _acceptTerms;
 
   void showHidePass({bool isUpdate = true}){

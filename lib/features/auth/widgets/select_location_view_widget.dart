@@ -100,17 +100,17 @@ class _SelectLocationViewWidgetState extends State<SelectLocationViewWidget> {
               mapView(storeRegController),
               SizedBox(height: !widget.fromView ? Dimensions.paddingSizeSmall : 0),
 
-              !widget.fromView && !widget.inDialog ? CustomButton(
-                buttonText: 'set_location'.tr,
-                onPressed: () {
-                  try{
-                    widget.mapController!.moveCamera(CameraUpdate.newCameraPosition(_cameraPosition));
-                    Get.back();
-                  }catch(_){
-                    Get.back();
-                  }
-                },
-              ) : const SizedBox(),
+              // !widget.fromView && !widget.inDialog ? CustomButton(
+              //   buttonText: 'set_location'.tr,
+              //   onPressed: () {
+              //     try{
+              //       widget.mapController!.moveCamera(CameraUpdate.newCameraPosition(_cameraPosition));
+              //       Get.back();
+              //     }catch(_){
+              //       Get.back();
+              //     }
+              //   },
+              // ) : const SizedBox(),
 
               !storeRegController.inZone ? Padding(
                 padding: const EdgeInsets.only(top: 5.0),
